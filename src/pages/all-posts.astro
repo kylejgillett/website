@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import pageContent from "../content/pages/all-posts.html?raw";
+const title = "All Posts";
+const description = "All Posts — Kyle J. Gillett";
+const date = "2026-02-07";
+---
+<BaseLayout title={title} description={description}>
+  <article class="container">
+    <header class="page-head"><h1>{title}</h1>{date && <p class="meta">{date}</p>}</header>
+    <div class="page-content" set:html={pageContent || "<p>Content coming soon.</p>"} />
+  </article>
+</BaseLayout>

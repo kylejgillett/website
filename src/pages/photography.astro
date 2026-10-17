@@ -1,0 +1,120 @@
+---
+import { readdirSync } from "node:fs";
+import { resolve } from "node:path";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Photography Gallery";
+const description = "Storms, northern lights, plains, wildlife, and other photographs by Kyle J. Gillett.";
+
+const photoDirectory = resolve(process.cwd(), "public/images_gallery");
+const photoFiles = readdirSync(photoDirectory)
+  .filter((filename) => /^\d{2}_.*\.(jpe?g|png|webp)$/i.test(filename))
+  .sort((a, b) => Number(a.slice(0, 2)) - Number(b.slice(0, 2)) || a.localeCompare(b));
+
+const photographs = photoFiles.map((filename) => {
+  const name = filename
+    .replace(/^\d{2}_/, "")
+    .replace(/\.[^.]+$/, "")
+    .replace(/^\d{8}(?:[-_]\d{4})?[-_]?/, "")
+    .replace(/[-_]+/g, " ")
+    .toLowerCase();
+  return {
+    src: `/images_gallery/${filename}`,
+    alt: `Photograph of ${name} by Kyle J. Gillett`,
+  };
+});
+
+const photoColumns = Array.from({ length: 3 }, () => []);
+photographs.forEach((photo, index) => {
+  photoColumns[index % 3].push({ ...photo, order: index });
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="container photography-page">
+    <header class="page-head">
+      <h1>{title}</h1>
+      <a class="photography-store-link" href="https://kylegillettphoto.darkroom.com/" target="_blank" rel="noreferrer">
+        Shop prints <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <section class="photo-grid" aria-label="Selected photographs">
+      {photoColumns.map((column) => (
+        <div class="photo-column">
+          {column.map((photo) => (
+            <figure class="photo-item" style={`--photo-order: ${photo.order}`}>
+              <button
+                class="photo-open"
+                type="button"
+                data-photo-trigger
+                data-photo-src={photo.src}
+                data-photo-alt={photo.alt}
+                aria-label={`View photo ${photo.order + 1} of ${photographs.length}: ${photo.alt}`}
+              >
+                <img src={photo.src} alt={photo.alt} loading="lazy" />
+              </button>
+            </figure>
+          ))}
+        </div>
+      ))}
+    </section>
+
+    <dialog class="photo-lightbox" aria-label="Photo viewer">
+      <button class="photo-lightbox-close" type="button" data-photo-close aria-label="Close photo viewer">×</button>
+      <div class="photo-lightbox-layout">
+        <button class="photo-lightbox-nav" type="button" data-photo-previous aria-label="Previous photo">←</button>
+        <img class="photo-lightbox-image" data-photo-image alt="" />
+        <button class="photo-lightbox-nav" type="button" data-photo-next aria-label="Next photo">→</button>
+      </div>
+      <p class="photo-lightbox-count" data-photo-count aria-live="polite"></p>
+    </dialog>
+  </article>
+</BaseLayout>
+
+<script>
+  const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-photo-trigger]"));
+  const dialog = document.querySelector<HTMLDialogElement>(".photo-lightbox");
+  const lightboxImage = document.querySelector<HTMLImageElement>("[data-photo-image]");
+  const count = document.querySelector<HTMLElement>("[data-photo-count]");
+  const closeButton = document.querySelector<HTMLButtonElement>("[data-photo-close]");
+  const previousButton = document.querySelector<HTMLButtonElement>("[data-photo-previous]");
+  const nextButton = document.querySelector<HTMLButtonElement>("[data-photo-next]");
+
+  if (dialog && lightboxImage && count && triggers.length > 0) {
+    let activeIndex = 0;
+    let lastTrigger: HTMLButtonElement | null = null;
+
+    const showPhoto = (index: number) => {
+      activeIndex = (index + triggers.length) % triggers.length;
+      const trigger = triggers[activeIndex];
+      lightboxImage.src = trigger.dataset.photoSrc || "";
+      lightboxImage.alt = trigger.dataset.photoAlt || "";
+      count.textContent = `${activeIndex + 1} / ${triggers.length}`;
+    };
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener("click", () => {
+        lastTrigger = trigger;
+        showPhoto(index);
+        dialog.showModal();
+        closeButton?.focus();
+      });
+    });
+
+    closeButton?.addEventListener("click", () => dialog.close());
+    previousButton?.addEventListener("click", () => showPhoto(activeIndex - 1));
+    nextButton?.addEventListener("click", () => showPhoto(activeIndex + 1));
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") showPhoto(activeIndex - 1);
+      if (event.key === "ArrowRight") showPhoto(activeIndex + 1);
+    });
+
+    dialog.addEventListener("close", () => lastTrigger?.focus());
+  }
+</script>

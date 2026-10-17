@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const featured = [
+  {
+    title: 'My Photography',
+    text: 'Storms, lightning, aurora, landscapes, and wildlife—photographs from the field.',
+    href: '/photography/',
+    label: 'Browse photographs',
+    className: 'home-card--photo',
+  },
+  {
+    title: 'Research, Tools, CV, & About',
+    text: 'Explore my atmospheric science research, software tools, presentations, and CV.',
+    href: '/about_and_work/',
+    label: 'Explore my work',
+    className: 'home-card--work',
+  },
+  {
+    title: 'Meteorological Musings',
+    text: 'Chase logs, research notes, and other writing about weather.',
+    href: '/posts/',
+    label: 'Read the posts',
+    className: 'home-card--writing',
+  },
+];
+---
+
+<BaseLayout title="Home" description="Photography, atmospheric science, software tools, and field notes by Kyle J. Gillett.">
+  <section class="home-feature container" aria-label="Featured photography and site navigation">
+    <figure class="home-hero-visual">
+      <img class="home-hero-image" src="/images_gallery/02_20250620-0021_WEDGE.jpg" alt="A wedge tornado beneath a dark supercell over green plains." />
+    </figure>
+    <section class="home-explore" aria-labelledby="explore-title">
+      <div class="home-section-heading">
+        <h2 id="explore-title">On this site</h2>
+      </div>
+      <nav class="cards home-cards" aria-label="On this site">
+        {featured.map((item) => (
+          <a class={`card home-card ${item.className}`} href={item.href}>
+            <div class="card-body">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <span class="card-link">{item.label} <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        ))}
+      </nav>
+    </section>
+  </section>
+
+  <section class="home-highlights container" aria-label="Featured work">
+    <article class="home-highlight home-research">
+      <h2>Storm interactions and tornadogenesis</h2>
+      <p>My research examines how neighboring convection can influence supercell behavior and tornado-like-vortex development.</p>
+      <a href="/about_and_work/#research-projects">Explore the research <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="home-highlight home-field-note">
+      <h2>Chase Log: June 19th, 2025</h2>
+      <p>Dickinson, North Dakota · A wedge tornado chase log.</p>
+      <a href="/chase-log-june-19th-2025-dickinson-north-dakota-wedge/">Read the chase log <span aria-hidden="true">→</span></a>
+    </article>
+  </section>
+
+  <section class="home-contact container" aria-label="Contact">
+    <p>Contact: <a href="mailto:kyle.gillett@und.edu">kyle.gillett@und.edu</a></p>
+  </section>
+</BaseLayout>

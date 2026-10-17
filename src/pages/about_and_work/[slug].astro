@@ -1,0 +1,23 @@
+---
+import AboutWorkPage from '../../components/AboutWorkPage.astro';
+
+export function getStaticPaths() {
+  const accordionSlugs = [
+    'storm-interactions',
+    'tropical-cyclone-tornado-environments',
+    'sounderpy',
+    'storm-chase-archive',
+    'skew-t-and-hodographs',
+    'severe-storm-dynamics',
+    'course-projects',
+    'space-weather-forecasting',
+    'witch-of-november',
+  ];
+
+  return accordionSlugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug = '' } = Astro.params;
+---
+
+<AboutWorkPage openAccordion={slug} />

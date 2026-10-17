@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import pageContent from "../content/pages/plots.html?raw";
+const title = "Plots in Python";
+const description = "Plots in Python — Kyle J. Gillett";
+const date = "2023-04-16";
+---
+<BaseLayout title={title} description={description}>
+  <article class="container">
+    <header class="page-head"><h1>{title}</h1>{date && <p class="meta">{date}</p>}</header>
+    <div class="page-content" set:html={pageContent || "<p>Content coming soon.</p>"} />
+  </article>
+</BaseLayout>

@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import pageContent from '../content/pages/about.html?raw';
+
+interface Props {
+  openAccordion?: string;
+}
+
+const { openAccordion = '' } = Astro.props;
+---
+
+<BaseLayout title="About me and my work" description="About Kyle J. Gillett, with curriculum vitae, research projects, tools, and resources.">
+  <article class="container work-page" data-open-accordion={openAccordion}>
+    <header class="page-head work-page-head">
+      <h1>About me and my work</h1>
+      <nav class="work-jump" aria-label="On this page">
+        <a href="#about-me">About me</a>
+        <a href="#curriculum-vitae">CV</a>
+        <a href="#research-projects">Research</a>
+        <a href="#tools">Tools</a>
+        <a href="#resources">Resources</a>
+      </nav>
+    </header>
+    <div class="page-content work-content" set:html={pageContent || '<p>Content coming soon.</p>'} />
+  </article>
+</BaseLayout>
+
+<script>
+  const article = document.querySelector<HTMLElement>(".work-page");
+  if (article) {
+    const baseUrl = "/about_and_work/";
+    const slugify = (value: string) => value
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+
+    const accordions = Array.from(article.querySelectorAll<HTMLButtonElement>(".work-content .wp-block-accordion-heading__toggle")).flatMap((button, index) => {
+      const heading = button.querySelector<HTMLElement>(".wp-block-accordion-heading__toggle-title");
+      const panel = button.closest(".wp-block-accordion-heading")?.nextElementSibling as HTMLElement | null;
+      if (!heading || !panel?.classList.contains("wp-block-accordion-panel")) return [];
+
+      const slug = slugify(heading.textContent?.trim() || "");
+      const panelId = `work-panel-${index + 1}`;
+      panel.id = panelId;
+      button.setAttribute("aria-controls", panelId);
+
+      return [{ button, panel, slug }];
+    });
+
+    const pathSlug = () => window.location.pathname
+      .replace(/^\/about_and_work\/?/, "")
+      .replace(/\/$/, "");
+
+    const setOpenAccordion = (slug: string) => {
+      accordions.forEach(({ button, panel, slug: accordionSlug }) => {
+        const isOpen = accordionSlug === slug;
+        button.setAttribute("aria-expanded", String(isOpen));
+        panel.hidden = !isOpen;
+        button.closest(".wp-block-accordion-item")?.classList.toggle("is-open", isOpen);
+      });
+    };
+
+    const initialSlug = article.dataset.openAccordion || pathSlug();
+    setOpenAccordion(initialSlug);
+
+    accordions.forEach(({ button, slug }) => {
+      button.addEventListener("click", () => {
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+        const nextSlug = isOpen ? "" : slug;
+        setOpenAccordion(nextSlug);
+        window.history.pushState({}, "", nextSlug ? `${baseUrl}${nextSlug}/` : baseUrl);
+      });
+    });
+
+    window.addEventListener("popstate", () => setOpenAccordion(pathSlug()));
+  }
+
+  const copyText = async (value: string) => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return;
+    }
+    const field = document.createElement("textarea");
+    field.value = value;
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.append(field);
+    field.select();
+    document.execCommand("copy");
+    field.remove();
+  };
+
+  document.querySelectorAll<HTMLUListElement>(".work-content .wp-block-accordion-panel .citation-list").forEach((list) => {
+    list.querySelectorAll<HTMLLIElement>("li").forEach((item) => {
+      if (item.dataset.copyControlsAdded) return;
+      item.dataset.copyControlsAdded = "true";
+
+      const actions = document.createElement("div");
+      actions.className = "citation-actions";
+
+      const addCopyButton = (label: string, value: string) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "citation-copy-button";
+        button.textContent = label;
+        button.addEventListener("click", async () => {
+          const originalLabel = label;
+          try {
+            await copyText(value);
+            button.textContent = "Copied";
+          } catch {
+            button.textContent = "Copy failed";
+          }
+          window.setTimeout(() => { button.textContent = originalLabel; }, 1600);
+        });
+        actions.append(button);
+      };
+
+      const citationText = item.textContent?.replace(/\s+/g, " ").trim() || "";
+      if (citationText) addCopyButton("Copy citation", citationText);
+      if (item.dataset.bibtex) addCopyButton("Copy BibTeX", item.dataset.bibtex);
+      item.append(actions);
+    });
+  });
+</script>
