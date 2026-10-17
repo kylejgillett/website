@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { sitePath } from '../utils/site-path.js';
 const { title = 'Kyle J. Gillett', description = 'Meteorologist, researcher, software developer, and photographer.' } = Astro.props;
 ---
 <!doctype html>
@@ -9,13 +10,13 @@ const { title = 'Kyle J. Gillett', description = 'Meteorologist, researcher, sof
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title} | Kyle J. Gillett</title>
-    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="icon" href={sitePath('/favicon.png')} type="image/png" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/">Kyle J. Gillett<span>Photographer, Storm Chaser, Meteorologist, Researcher.</span></a>
+      <a class="brand" href={sitePath('/')}>Kyle J. Gillett<span>Photographer, Storm Chaser, Meteorologist, Researcher.</span></a>
       <nav aria-label="Main navigation">
-        <a href="/photography/">Photo Gallery</a><a href="/about_and_work/">Research, Tools, CV, &amp; About</a><a href="/posts/">Meteorological Musings</a>
+        <a href={sitePath('/photography/')}>Photo Gallery</a><a href={sitePath('/about_and_work/')}>Research, Tools, CV, &amp; About</a><a href={sitePath('/posts/')}>Meteorological Musings</a>
       </nav>
     </header>
     <main><slot /></main>

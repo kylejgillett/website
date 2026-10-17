@@ -1,4 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { sitePath } from '../utils/site-path.js';
 ---
-<BaseLayout title="Page not found"><section class="container page-head"><h1>Page not found</h1><p>That page may have moved during the site rebuild.</p><p><a href="/">Return home</a></p></section></BaseLayout>
+<BaseLayout title="Page not found"><section class="container page-head"><h1>Page not found</h1><p>That page may have moved during the site rebuild.</p><p><a href={sitePath('/')}>Return home</a></p></section></BaseLayout>

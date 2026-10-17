@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from '../utils/site-path.js';
 
 const title = "Meteorological Musings";
 const description = "Storm chase logs, research notes, and weather stories by Kyle J. Gillett.";
@@ -11,7 +12,7 @@ const posts = [
     category: "Chase log · North Dakota",
     excerpt:
       "A lone supercell produced a large, dusty wedge tornado southwest of Dickinson, North Dakota, on the day before the historic Enderlin tornado and derecho.",
-    href: "/chase-log-june-19th-2025-dickinson-north-dakota-wedge/",
+    href: sitePath("/chase-log-june-19th-2025-dickinson-north-dakota-wedge/"),
   },
 ];
 ---

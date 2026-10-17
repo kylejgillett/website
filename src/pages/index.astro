@@ -1,25 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { sitePath } from '../utils/site-path.js';
 
 const featured = [
   {
     title: 'My Photography',
     text: 'Storms, lightning, aurora, landscapes, and wildlife—photographs from the field.',
-    href: '/photography/',
+    href: sitePath('/photography/'),
     label: 'Browse photographs',
     className: 'home-card--photo',
   },
   {
     title: 'Research, Tools, CV, & About',
     text: 'Explore my atmospheric science research, software tools, presentations, and CV.',
-    href: '/about_and_work/',
+    href: sitePath('/about_and_work/'),
     label: 'Explore my work',
     className: 'home-card--work',
   },
   {
     title: 'Meteorological Musings',
     text: 'Chase logs, research notes, and other writing about weather.',
-    href: '/posts/',
+    href: sitePath('/posts/'),
     label: 'Read the posts',
     className: 'home-card--writing',
   },
@@ -29,7 +30,7 @@ const featured = [
 <BaseLayout title="Home" description="Photography, atmospheric science, software tools, and field notes by Kyle J. Gillett.">
   <section class="home-feature container" aria-label="Featured photography and site navigation">
     <figure class="home-hero-visual">
-      <img class="home-hero-image" src="/images_gallery/02_20250620-0021_WEDGE.jpg" alt="A wedge tornado beneath a dark supercell over green plains." />
+      <img class="home-hero-image" src={sitePath('/images_gallery/02_20250620-0021_WEDGE.jpg')} alt="A wedge tornado beneath a dark supercell over green plains." />
     </figure>
     <section class="home-explore" aria-labelledby="explore-title">
       <div class="home-section-heading">
@@ -53,12 +54,12 @@ const featured = [
     <article class="home-highlight home-research">
       <h2>Storm interactions and tornadogenesis</h2>
       <p>My research examines how neighboring convection can influence supercell behavior and tornado-like-vortex development.</p>
-      <a href="/about_and_work/#research-projects">Explore the research <span aria-hidden="true">→</span></a>
+      <a href={`${sitePath('/about_and_work/')}#research-projects`}>Explore the research <span aria-hidden="true">→</span></a>
     </article>
     <article class="home-highlight home-field-note">
       <h2>Chase Log: June 19th, 2025</h2>
       <p>Dickinson, North Dakota · A wedge tornado chase log.</p>
-      <a href="/chase-log-june-19th-2025-dickinson-north-dakota-wedge/">Read the chase log <span aria-hidden="true">→</span></a>
+      <a href={sitePath('/chase-log-june-19th-2025-dickinson-north-dakota-wedge/')}>Read the chase log <span aria-hidden="true">→</span></a>
     </article>
   </section>
 

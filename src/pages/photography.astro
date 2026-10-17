@@ -2,6 +2,7 @@
 import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sitePath } from '../utils/site-path.js';
 
 const title = "Photography Gallery";
 const description = "Storms, northern lights, plains, wildlife, and other photographs by Kyle J. Gillett.";
@@ -19,7 +20,7 @@ const photographs = photoFiles.map((filename) => {
     .replace(/[-_]+/g, " ")
     .toLowerCase();
   return {
-    src: `/images_gallery/${filename}`,
+    src: sitePath(`/images_gallery/${filename}`),
     alt: `Photograph of ${name} by Kyle J. Gillett`,
   };
 });

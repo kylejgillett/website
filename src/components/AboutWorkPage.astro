@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import pageContent from '../content/pages/about.html?raw';
+import { withSiteBase } from '../utils/site-path.js';
 
 interface Props {
   openAccordion?: string;
@@ -21,7 +22,7 @@ const { openAccordion = '' } = Astro.props;
         <a href="#resources">Resources</a>
       </nav>
     </header>
-    <div class="page-content work-content" set:html={pageContent || '<p>Content coming soon.</p>'} />
+    <div class="page-content work-content" set:html={withSiteBase(pageContent || '<p>Content coming soon.</p>')} />
   </article>
 </BaseLayout>
 
