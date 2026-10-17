@@ -1,4 +1,6 @@
-## Run locally
+## A simple astro website
+
+### Run locally
 
 Requirements: Node.js 20.3+ recommended.
 
@@ -14,7 +16,7 @@ npm run build
 npm run preview
 ```
 
-## Structure
+### Structure
 - `src/content/pages/` — editable HTML for each migrated page and post. 
 - `src/pages/` — one Astro route file per page/post, named for its URL slug.
 - `src/pages/index.astro` — the home page.
