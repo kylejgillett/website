@@ -8,7 +8,7 @@ const date = "2026-02-12";
 ---
 <BaseLayout title={title} description={description}>
   <article class="container">
-    <header class="page-head post-page-head"><h1>{title}</h1>{date && <p class="meta">{date}</p>}</header>
+    <header class="page-head"><h1>{title}</h1>{date && <p class="meta">{date}</p>}</header>
     <div class="page-content" set:html={withSiteBase(pageContent || "<p>Content coming soon.</p>")} />
   </article>
 </BaseLayout>

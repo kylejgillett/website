@@ -12,7 +12,7 @@ const { openAccordion = '' } = Astro.props;
 
 <BaseLayout title="About me and my work" description="About Kyle J. Gillett, with curriculum vitae, research projects, tools, and resources.">
   <article class="container work-page" data-open-accordion={openAccordion}>
-    <header class="page-head work-page-head">
+    <header class="page-head">
       <h1>About me and my work</h1>
       <nav class="work-jump" aria-label="On this page">
         <a href="#about-me">About me</a>
@@ -29,7 +29,8 @@ const { openAccordion = '' } = Astro.props;
 <script>
   const article = document.querySelector<HTMLElement>(".work-page");
   if (article) {
-    const baseUrl = "/about_and_work/";
+    const baseUrl = `${import.meta.env.BASE_URL}about_and_work/`;
+    const routePrefix = new URL(baseUrl, window.location.origin).pathname;
     const slugify = (value: string) => value
       .toLowerCase()
       .replace(/&/g, "and")
@@ -49,9 +50,11 @@ const { openAccordion = '' } = Astro.props;
       return [{ button, panel, slug }];
     });
 
-    const pathSlug = () => window.location.pathname
-      .replace(/^\/about_and_work\/?/, "")
-      .replace(/\/$/, "");
+    const pathSlug = () => {
+      const pathname = window.location.pathname;
+      if (!pathname.startsWith(routePrefix)) return "";
+      return pathname.slice(routePrefix.length).replace(/\/$/, "");
+    };
 
     const setOpenAccordion = (slug: string) => {
       accordions.forEach(({ button, panel, slug: accordionSlug }) => {
