@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://kylejgillett.github.io',
-  base: '/website',
+  site: 'https://kylegillettphoto.com',
   trailingSlash: 'always',
 });
