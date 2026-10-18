@@ -160,6 +160,7 @@ photographs.forEach((photo, index) => {
     let activeIndex = 0;
     let lastTrigger: HTMLButtonElement | null = null;
     let activeTriggers = triggers;
+    let activeCategory = "all";
 
     const showPhoto = (index: number) => {
       activeIndex = (index + activeTriggers.length) % activeTriggers.length;
@@ -170,6 +171,7 @@ photographs.forEach((photo, index) => {
     };
 
     const applyFilter = (category: string) => {
+      activeCategory = category;
       photoItems.forEach((item) => {
         const photoCategories = item.dataset.photoCategories?.split(/\s+/) || [];
         item.hidden = category !== "all" && !photoCategories.includes(category);
@@ -178,8 +180,11 @@ photographs.forEach((photo, index) => {
         .filter((item) => !item.hidden)
         .sort((a, b) => Number(a.dataset.photoOrder) - Number(b.dataset.photoOrder));
       photoColumns.forEach((column) => column.replaceChildren());
+      const layoutColumns = window.matchMedia("(max-width: 760px)").matches
+        ? photoColumns.slice(0, 2)
+        : photoColumns;
       visibleItems.forEach((item, index) => {
-        const column = photoColumns[index % photoColumns.length];
+        const column = layoutColumns[index % layoutColumns.length];
         column?.append(item);
       });
       activeTriggers = triggers.filter((trigger) => !trigger.closest(".photo-item")?.hidden);
@@ -192,6 +197,8 @@ photographs.forEach((photo, index) => {
     filterButtons.forEach((button) => {
       button.addEventListener("click", () => applyFilter(button.dataset.photoFilter || "all"));
     });
+    applyFilter("all");
+    window.matchMedia("(max-width: 760px)").addEventListener("change", () => applyFilter(activeCategory));
 
     triggers.forEach((trigger) => {
       trigger.addEventListener("click", () => {

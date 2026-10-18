@@ -26,10 +26,21 @@ const currentPosts = ['/posts/', '/all-posts/', '/chase-log-june-19th-2025-dicki
     <header class="site-header" style={`--header-map: url("${sitePath('/500_heights.gif')}")`}>
       <a class="brand" href={sitePath('/')}>Kyle J. Gillett<span>Photographer, Storm Chaser, Meteorologist, Researcher.</span></a>
       <nav aria-label="Main navigation">
-        <a href={sitePath('/')} aria-current={currentHome ? 'page' : undefined}>Home</a>
-        <a href={sitePath('/photography/')} aria-current={currentPhotography ? 'page' : undefined}>Photo Gallery</a>
-        <a href={sitePath('/about_and_work/')} aria-current={currentWork ? 'page' : undefined}>Research, Tools, CV, &amp; About</a>
-        <a href={sitePath('/posts/')} aria-current={currentPosts ? 'page' : undefined}>Meteorological Musings</a>
+        <div class="site-nav-links">
+          <a href={sitePath('/')} aria-current={currentHome ? 'page' : undefined}>Home</a>
+          <a href={sitePath('/photography/')} aria-current={currentPhotography ? 'page' : undefined}>Photo Gallery</a>
+          <a href={sitePath('/about_and_work/')} aria-current={currentWork ? 'page' : undefined}>Research, Tools, CV, &amp; About</a>
+          <a href={sitePath('/posts/')} aria-current={currentPosts ? 'page' : undefined}>Meteorological Musings</a>
+        </div>
+        <details class="site-nav-mobile">
+          <summary>Menu</summary>
+          <div class="site-nav-mobile-links">
+            <a href={sitePath('/')} aria-current={currentHome ? 'page' : undefined}>Home</a>
+            <a href={sitePath('/photography/')} aria-current={currentPhotography ? 'page' : undefined}>Photo Gallery</a>
+            <a href={sitePath('/about_and_work/')} aria-current={currentWork ? 'page' : undefined}>Research, Tools, CV, &amp; About</a>
+            <a href={sitePath('/posts/')} aria-current={currentPosts ? 'page' : undefined}>Meteorological Musings</a>
+          </div>
+        </details>
       </nav>
     </header>
     <main><slot /></main>
