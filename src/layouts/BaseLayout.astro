@@ -2,6 +2,16 @@
 import '../styles/global.css';
 import { sitePath } from '../utils/site-path.js';
 const { title = 'Kyle J. Gillett', description = 'Meteorologist, researcher, software developer, and photographer.' } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const normalizePath = (path) => sitePath(path).replace(/\/+$/, '') || '/';
+const isAtOrBelow = (path) => {
+  const route = normalizePath(path);
+  return currentPath === route || currentPath.startsWith(`${route}/`);
+};
+const currentHome = currentPath === normalizePath('/') || currentPath === normalizePath('/home/');
+const currentPhotography = isAtOrBelow('/photography/');
+const currentWork = ['/about_and_work/', '/about/', '/work/', '/plots/'].some(isAtOrBelow);
+const currentPosts = ['/posts/', '/all-posts/', '/chase-log-june-19th-2025-dickinson-north-dakota-wedge/'].some(isAtOrBelow);
 ---
 <!doctype html>
 <html lang="en">
@@ -16,7 +26,10 @@ const { title = 'Kyle J. Gillett', description = 'Meteorologist, researcher, sof
     <header class="site-header">
       <a class="brand" href={sitePath('/')}>Kyle J. Gillett<span>Photographer, Storm Chaser, Meteorologist, Researcher.</span></a>
       <nav aria-label="Main navigation">
-        <a href={sitePath('/photography/')}>Photo Gallery</a><a href={sitePath('/about_and_work/')}>Research, Tools, CV, &amp; About</a><a href={sitePath('/posts/')}>Meteorological Musings</a>
+        <a href={sitePath('/')} aria-current={currentHome ? 'page' : undefined}>Home</a>
+        <a href={sitePath('/photography/')} aria-current={currentPhotography ? 'page' : undefined}>Photo Gallery</a>
+        <a href={sitePath('/about_and_work/')} aria-current={currentWork ? 'page' : undefined}>Research, Tools, CV, &amp; About</a>
+        <a href={sitePath('/posts/')} aria-current={currentPosts ? 'page' : undefined}>Meteorological Musings</a>
       </nav>
     </header>
     <main><slot /></main>

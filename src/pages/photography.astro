@@ -9,12 +9,56 @@ const description = "Storms, northern lights, plains, wildlife, and other photog
 
 const photoDirectory = resolve(process.cwd(), "public/images_gallery");
 const photoFiles = readdirSync(photoDirectory)
-  .filter((filename) => /^\d{2}_.*\.(jpe?g|png|webp)$/i.test(filename))
-  .sort((a, b) => Number(a.slice(0, 2)) - Number(b.slice(0, 2)) || a.localeCompare(b));
+  .filter((filename) => /^\d+_.*\.(jpe?g|png|webp)$/i.test(filename))
+  .sort((a, b) => Number(a.match(/^\d+/)?.[0]) - Number(b.match(/^\d+/)?.[0]) || a.localeCompare(b));
+
+const categories = [
+  { id: "storms", label: "Storms" },
+  { id: "structure", label: "Storm Structure" },
+  { id: "tornado", label: "Tornadoes" },
+  { id: "night-sky", label: "Night Sky" },
+  { id: "aurora", label: "Aurora" },
+  { id: "wildlife", label: "Wildlife" },
+  { id: "landscape", label: "Landscape" },
+  { id: "fall", label: "Fall" },
+  { id: "winter", label: "Winter" },
+  { id: "built-structures", label: "Structures" },
+];
+
+const tagsFor = (filename) => filename
+  .toLowerCase()
+  .replace(/^\d+_/, "")
+  .replace(/\.[^.]+$/, "")
+  .split(/[_-]+/);
+
+const hasAnyTag = (tags, values) => tags.some((tag) => values.includes(tag));
+const hasTornadoTag = (tags) => tags.some((tag) => tag === "wedge" || tag === "tordamage" || /^tornado\d*$/.test(tag));
+const stormTags = ["storm", "supercell", "lightning", "shelf", "mothership", "spaceship", "crawler"];
+const wildlifeTags = ["wildlife", "bison", "deer", "elk", "hawk", "owl", "squirrel", "crane"];
+const landscapeTags = ["landscape", "badlands", "mountain", "mnt", "river", "falls", "creek", "forest", "barn", "house", "lighthouse", "schoolhouse", "sunset", "sunrise", "balloon", "appletrees", "peaktopeak", "snow", "snowy", "fall", "carpriver"];
+const winterTags = ["snow", "snowy", "blizzard"];
+const builtStructureTags = ["church", "barn", "house", "lighthouse", "schoolhouse"];
+
+const categoriesFor = (filename) => {
+  const tags = tagsFor(filename);
+  const matches = [];
+  if (hasAnyTag(tags, [...stormTags, "structure"]) || hasTornadoTag(tags)) matches.push("storms");
+  if (tags.includes("structure")) matches.push("structure");
+  if (hasTornadoTag(tags)) matches.push("tornado");
+  if (hasAnyTag(tags, ["aurora", "milkyway", "comet", "eclipse", "lights"])) matches.push("night-sky");
+  if (hasAnyTag(tags, wildlifeTags)) matches.push("wildlife");
+  if (tags.includes("aurora")) matches.push("aurora");
+  if (hasAnyTag(tags, landscapeTags)) matches.push("landscape");
+  if (tags.includes("fall")) matches.push("fall");
+  if (hasAnyTag(tags, winterTags)) matches.push("winter");
+  if (hasAnyTag(tags, builtStructureTags)) matches.push("built-structures");
+  if (matches.length === 0) matches.push("landscape");
+  return matches;
+};
 
 const photographs = photoFiles.map((filename) => {
   const name = filename
-    .replace(/^\d{2}_/, "")
+    .replace(/^\d+_/, "")
     .replace(/\.[^.]+$/, "")
     .replace(/^\d{8}(?:[-_]\d{4})?[-_]?/, "")
     .replace(/[-_]+/g, " ")
@@ -22,8 +66,18 @@ const photographs = photoFiles.map((filename) => {
   return {
     src: sitePath(`/images_gallery/${filename}`),
     alt: `Photograph of ${name} by Kyle J. Gillett`,
+    categories: categoriesFor(filename),
+    sortOrder: Number(filename.match(/^\d+/)?.[0]),
   };
-});
+}).sort((a, b) => a.sortOrder - b.sortOrder || a.src.localeCompare(b.src));
+
+const categoryFilters = [
+  { id: "all", label: "All photos", count: photographs.length },
+  ...categories.map((category) => ({
+    ...category,
+    count: photographs.filter((photo) => photo.categories.includes(category.id)).length,
+  })),
+];
 
 const photoColumns = Array.from({ length: 3 }, () => []);
 photographs.forEach((photo, index) => {
@@ -35,16 +89,28 @@ photographs.forEach((photo, index) => {
   <article class="container photography-page">
     <header class="page-head">
       <h1>{title}</h1>
-      <a class="photography-store-link" href="https://kylegillettphoto.darkroom.com/" target="_blank" rel="noreferrer">
-        Shop prints <span aria-hidden="true">↗</span>
+      <a class="photography-store-link" href="https://kylegillettphoto.darkroom.com/" target="_blank" rel="noreferrer" aria-label="Shop photo prints in a new tab">
+        <span>Shop My Photo Store</span><span class="photography-store-arrow" aria-hidden="true">↗</span>
       </a>
     </header>
+
+    <div class="photo-filter-bar">
+      <span class="photo-filter-label">Browse by subject</span>
+      <div class="photo-filters" role="group" aria-label="Filter photographs by subject">
+        {categoryFilters.map((category, index) => (
+          <button class="photo-filter" type="button" data-photo-filter={category.id} aria-pressed={index === 0 ? 'true' : 'false'}>
+            {category.label}<span class="photo-filter-count" aria-hidden="true">{category.count}</span>
+          </button>
+        ))}
+      </div>
+      <span class="photo-filter-status" data-photo-filter-status aria-live="polite">{photographs.length} photographs</span>
+    </div>
 
     <section class="photo-grid" aria-label="Selected photographs">
       {photoColumns.map((column) => (
         <div class="photo-column">
           {column.map((photo) => (
-            <figure class="photo-item" style={`--photo-order: ${photo.order}`}>
+            <figure class="photo-item" data-photo-categories={photo.categories.join(' ')} data-photo-order={photo.order} style={`--photo-order: ${photo.order}`}>
               <button
                 class="photo-open"
                 type="button"
@@ -74,10 +140,18 @@ photographs.forEach((photo, index) => {
 </BaseLayout>
 
 <script>
-  const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-photo-trigger]"));
+  const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-photo-trigger]")).sort((a, b) => {
+    const orderA = Number(a.closest<HTMLElement>(".photo-item")?.dataset.photoOrder || 0);
+    const orderB = Number(b.closest<HTMLElement>(".photo-item")?.dataset.photoOrder || 0);
+    return orderA - orderB;
+  });
   const dialog = document.querySelector<HTMLDialogElement>(".photo-lightbox");
   const lightboxImage = document.querySelector<HTMLImageElement>("[data-photo-image]");
   const count = document.querySelector<HTMLElement>("[data-photo-count]");
+  const filterStatus = document.querySelector<HTMLElement>("[data-photo-filter-status]");
+  const filterButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-photo-filter]"));
+  const photoItems = Array.from(document.querySelectorAll<HTMLElement>(".photo-item"));
+  const photoColumns = Array.from(document.querySelectorAll<HTMLElement>(".photo-column"));
   const closeButton = document.querySelector<HTMLButtonElement>("[data-photo-close]");
   const previousButton = document.querySelector<HTMLButtonElement>("[data-photo-previous]");
   const nextButton = document.querySelector<HTMLButtonElement>("[data-photo-next]");
@@ -85,19 +159,44 @@ photographs.forEach((photo, index) => {
   if (dialog && lightboxImage && count && triggers.length > 0) {
     let activeIndex = 0;
     let lastTrigger: HTMLButtonElement | null = null;
+    let activeTriggers = triggers;
 
     const showPhoto = (index: number) => {
-      activeIndex = (index + triggers.length) % triggers.length;
-      const trigger = triggers[activeIndex];
+      activeIndex = (index + activeTriggers.length) % activeTriggers.length;
+      const trigger = activeTriggers[activeIndex];
       lightboxImage.src = trigger.dataset.photoSrc || "";
       lightboxImage.alt = trigger.dataset.photoAlt || "";
-      count.textContent = `${activeIndex + 1} / ${triggers.length}`;
+      count.textContent = `${activeIndex + 1} / ${activeTriggers.length}`;
     };
 
-    triggers.forEach((trigger, index) => {
+    const applyFilter = (category: string) => {
+      photoItems.forEach((item) => {
+        const photoCategories = item.dataset.photoCategories?.split(/\s+/) || [];
+        item.hidden = category !== "all" && !photoCategories.includes(category);
+      });
+      const visibleItems = photoItems
+        .filter((item) => !item.hidden)
+        .sort((a, b) => Number(a.dataset.photoOrder) - Number(b.dataset.photoOrder));
+      photoColumns.forEach((column) => column.replaceChildren());
+      visibleItems.forEach((item, index) => {
+        const column = photoColumns[index % photoColumns.length];
+        column?.append(item);
+      });
+      activeTriggers = triggers.filter((trigger) => !trigger.closest(".photo-item")?.hidden);
+      filterButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.photoFilter === category));
+      });
+      if (filterStatus) filterStatus.textContent = `${activeTriggers.length} photographs`;
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => applyFilter(button.dataset.photoFilter || "all"));
+    });
+
+    triggers.forEach((trigger) => {
       trigger.addEventListener("click", () => {
         lastTrigger = trigger;
-        showPhoto(index);
+        showPhoto(activeTriggers.indexOf(trigger));
         dialog.showModal();
         closeButton?.focus();
       });
