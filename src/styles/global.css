@@ -67,11 +67,12 @@ button, input, textarea, select { font: inherit; }
   position: absolute;
   z-index: 0;
   inset: 0;
-  background-image: linear-gradient(rgb(81 64 47 / 25%), rgb(81 64 47 / 25%)), var(--header-map);
-  background-position: center, center 50%;
-  background-size: cover, cover;
+  background-image: var(--header-map);
+  background-position: center 52%;
+  background-size: cover;
   content: '';
-  opacity: .62;
+  filter: invert(1);
+  opacity: .05;
   pointer-events: none;
 }
 .site-header > * { position: relative; z-index: 1; }

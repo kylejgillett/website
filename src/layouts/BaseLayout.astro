@@ -23,7 +23,7 @@ const currentPosts = ['/posts/', '/all-posts/', '/chase-log-june-19th-2025-dicki
     <link rel="icon" href={sitePath('/favicon.png')} type="image/png" />
   </head>
   <body>
-    <header class="site-header">
+    <header class="site-header" style={`--header-map: url("${sitePath('/500_heights.gif')}")`}>
       <a class="brand" href={sitePath('/')}>Kyle J. Gillett<span>Photographer, Storm Chaser, Meteorologist, Researcher.</span></a>
       <nav aria-label="Main navigation">
         <a href={sitePath('/')} aria-current={currentHome ? 'page' : undefined}>Home</a>
