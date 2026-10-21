@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import pageContent from "../content/pages/storm-interactions-a-historical-perspective.html?raw";
+import { withSiteBase } from '../utils/site-path.js';
+const title = 'Storm Interactions: A Historical Perspective';
+const description = `${title} — Kyle J. Gillett`;
+const date = '2026-07-18';
+---
+<BaseLayout title={title} description={description}>
+  <article class="container">
+    <header class="page-head"><h1>{title}</h1>{date && <p class="meta">{date}</p>}</header>
+    <div class="page-content" set:html={withSiteBase(pageContent || "<p>Content coming soon.</p>")} />
+  </article>
+</BaseLayout>

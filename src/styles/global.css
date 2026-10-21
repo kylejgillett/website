@@ -227,6 +227,11 @@ main { min-height: 65vh; }
 
 .photography-intro { margin: 1rem 0 1.25rem; color: var(--ink-soft); font-family: var(--serif); font-size: 1.2rem; line-height: 1.6; }
 .photography-store-link { display: inline-flex; min-height: var(--control-height); align-items: center; gap: .8rem; margin-top: .15rem; padding: .45rem .55rem .45rem 1.1rem; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--control-bg); color: var(--control-text); font-size: .98rem; font-weight: 700; letter-spacing: .015em; text-decoration: none; box-shadow: 0 4px 14px rgb(0 0 0 / 18%); transition: transform .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease; }
+.wildlife-notes-link { display: inline-flex; min-height: var(--control-height); align-items: center; justify-content: space-between; gap: .8rem; margin: .15rem .8rem 0; padding: .45rem .55rem .45rem 1.1rem; border: 1px solid var(--line-strong); border-radius: 999px; background: transparent; color: var(--ink); font-size: .98rem; font-weight: 700; letter-spacing: .015em; text-decoration: none; transition: transform .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease; }
+.wildlife-notes-link:hover { transform: translateY(-2px); border-color: var(--ochre); background: var(--control-bg); color: var(--control-text); box-shadow: 0 5px 16px rgb(0 0 0 / 20%); }
+.wildlife-notes-link:focus-visible { outline: 3px solid var(--ochre); outline-offset: 4px; }
+.wildlife-notes-arrow { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--ochre); font-size: 1rem; transition: transform .18s ease, border-color .18s ease; }
+.wildlife-notes-link:hover .wildlife-notes-arrow { transform: translate(1px, -1px); border-color: var(--ochre); }
 .photography-store-link:hover { transform: translateY(-2px); border-color: var(--ochre); background: var(--ochre); color: var(--paper); box-shadow: 0 7px 18px rgb(0 0 0 / 25%); }
 .photography-store-arrow { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--ochre); font-size: 1rem; transition: transform .18s ease, border-color .18s ease, color .18s ease; }
 .photography-store-link:hover .photography-store-arrow { transform: translate(1px, -1px); border-color: currentColor; color: var(--paper); }
@@ -433,6 +438,8 @@ main { min-height: 65vh; }
 .page-content figure { margin: 2rem 0; }
 .page-content figure.chase-log-image { width: 100%; max-width: 100%; margin: 2.25rem auto; padding: .4rem; border: 1px solid var(--line-strong); border-radius: 5px; background: rgb(224 194 126 / 6%); }
 .page-content figure.chase-log-image img { display: block; width: 100%; max-width: 100%; height: auto; margin-inline: auto; object-fit: contain; }
+.page-content figure.spirit-image { margin: 2.25rem 0; }
+.page-content figure.spirit-image img { padding: .35rem; border: 1px solid var(--line-strong); border-radius: 7px; background: var(--paper); box-shadow: var(--shadow-soft); }
 .page-content figcaption { margin-top: .65rem; color: var(--ink-soft); font-size: .88rem; line-height: 1.5; }
 .page-content h2, .page-content h3 {
   margin-top: 2.5rem;
@@ -557,7 +564,7 @@ footer {
   .container.photography-page { width: calc(100% - 1.1rem); }
   .photography-page .page-head { padding: 1.1rem 0 .9rem; }
   .photography-page .page-head h1 { margin: 0 0 .8rem; font-size: clamp(2rem, 9vw, 2.8rem); line-height: 1.05; }
-  .photography-store-link { width: 100%; min-height: 3rem; justify-content: space-between; margin: 0; }
+  .wildlife-notes-link, .photography-store-link { width: 100%; min-height: 3rem; justify-content: space-between; margin: 0 0 .5rem; }
   .photo-filter-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .45rem .6rem; margin-bottom: .85rem; padding: .65rem 0 .5rem; }
   .photo-filter-label { font-size: .72rem; }
   .photo-filter-status { font-size: .75rem; white-space: nowrap; }
