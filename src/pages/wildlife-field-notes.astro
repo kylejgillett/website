@@ -38,7 +38,7 @@ const observations = wildlifeMetadata
         const dateValue = photo.date ? new Date(`${photo.date}T12:00:00Z`) : null;
         return {
           ...photo,
-          src: sitePath(`/images_wildlife/${photo.filename}`),
+          thumbnailSrc: sitePath(`/images_wildlife/optimized/${photo.filename.replace(/\.[^.]+$/, ".webp")}`),
           alt: `${species.commonName} photographed by Kyle J. Gillett`,
           dateLabel: dateValue && !Number.isNaN(dateValue.getTime()) ? dateFormatter.format(dateValue) : "Date not listed",
         };
@@ -83,12 +83,11 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
         <div class="field-notes-grid">
           {observations.filter((item) => item.group === section).map((item, index) => {
             const photos = item.photos;
-            const slideData = photos.map((photo) => ({ src: sitePath(photo.src), alt: photo.alt }));
+            const slideData = photos.map((photo) => ({ src: photo.thumbnailSrc, alt: photo.alt }));
             return (
               <article class="field-note-card" data-species-card data-search-terms={`${item.name} ${item.scientific}`}>
                 <figure class="field-note-image" data-field-slideshow data-slides={JSON.stringify(slideData)} data-slide-dates={JSON.stringify(photos.map((photo) => photo.dateLabel))} data-slide-locations={JSON.stringify(photos.map((photo) => photo.location))}>
-                  <img src={slideData[0].src} alt={slideData[0].alt} loading="lazy" data-slide-image />
-                  <figcaption>{section} · {String(index + 1).padStart(2, "0")}</figcaption>
+                  <img src={slideData[0].src} alt={slideData[0].alt} loading="lazy" decoding="async" data-slide-image />
                   {photos.length > 1 && <>
                     <span class="field-note-photo-count" aria-label={`${photos.length} photos in this field note`}>
                       <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="4" width="13" height="15" rx="2"/><path d="M4 8v11a2 2 0 0 0 2 2h10"/></svg>
@@ -144,8 +143,11 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
   .field-notes-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; align-items: start; }
   .field-note-card { overflow: hidden; border: 1px solid var(--line); background: var(--paper-light); }
   .field-note-image { position: relative; margin: 0; overflow: hidden; background: rgb(0 0 0 / 8%); }
-  .field-note-image img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .45s ease; }
-  .field-note-card:hover .field-note-image img { transform: scale(1.025); }
+  .field-note-image img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  @media (hover: hover) and (pointer: fine) {
+    .field-note-image img { transition: transform .3s ease; }
+    .field-note-card:hover .field-note-image img { transform: scale(1.025); }
+  }
   .field-note-image figcaption { position: absolute; right: .75rem; bottom: .75rem; padding: .35rem .55rem; background: rgb(18 22 18 / 78%); color: white; font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
   .field-note-photo-count { position: absolute; top: .75rem; left: .75rem; display: inline-flex; align-items: center; gap: .35rem; padding: .4rem .55rem; border: 1px solid rgb(255 255 255 / 25%); border-radius: 99px; background: rgb(18 22 18 / 78%); color: white; font-size: .75rem; font-weight: 700; }
   .field-note-photo-count svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
@@ -172,7 +174,7 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
     .field-notes-page { width: calc(100% - 1.1rem); }
     .field-notes-header { padding: 3rem .2rem 2.5rem; }
     .field-notes-intro { font-size: 1.08rem; }
-    .field-notes-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; }
+    .field-notes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
     .field-notes-section { margin-bottom: 3rem; }
     .field-note-copy { padding: .7rem .65rem .75rem; }
     .field-note-title { min-height: 8rem; }
