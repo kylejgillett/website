@@ -5,22 +5,27 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "20240725_whitetailed_deer.png",
+        "filename": "20240725_whitetailed_deer.webp",
         "date": "2024-07-25",
         "location": "Leoni, MI"
       },
       {
-        "filename": "01022022_whitetailed_deer.jpg",
+        "filename": "01022022_whitetailed_deer.webp",
         "date": "2022-01-02",
         "location": "Leoni, MI"
       },
       {
-        "filename": "01022022_whitetailed_deer_2.jpg",
+        "filename": "20240724-1240_white_tailed_deer.webp",
+        "date": "2024-07-24",
+        "location": "Leoni, MI"
+      },
+      {
+        "filename": "01022022_whitetailed_deer_2.webp",
         "date": "2022-01-02",
         "location": "Leoni, MI"
       },
       {
-        "filename": "01202024_whitetailed_deer.jpg",
+        "filename": "01202024_whitetailed_deer.webp",
         "date": "2024-01-20",
         "location": "Reese, MI"
       }
@@ -32,17 +37,17 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "01052022_fox_squirrel.jpg",
+        "filename": "01052022_fox_squirrel.webp",
         "date": "2022-01-05",
         "location": "Mount Pleasant, MI"
       },
       {
-        "filename": "01202024_fox_squirrel.jpg",
+        "filename": "01202024_fox_squirrel.webp",
         "date": "2024-01-20",
         "location": "Reese, MI"
       },
       {
-        "filename": "240505_fox_squirrl.jpg",
+        "filename": "240505_fox_squirrl.webp",
         "date": "2024-05-05",
         "location": "Albion, MI"
       }
@@ -54,22 +59,22 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20240706-1527_CANADAGOOSE.jpg",
+        "filename": "20240706-1527_CANADAGOOSE.webp",
         "date": "2024-07-06",
         "location": "Bay City, MI"
       },
       {
-        "filename": "05052021_canadian_goose.jpg",
+        "filename": "05052021_canadian_goose.webp",
         "date": "2021-05-05",
         "location": "Millbrook, MI"
       },
       {
-        "filename": "01092024_canadian_goose.jpg",
+        "filename": "01092024_canadian_goose.webp",
         "date": "2024-01-09",
         "location": "Deerfield, MI"
       },
       {
-        "filename": "240413_canadian_goose.jpg",
+        "filename": "240413_canadian_goose.webp",
         "date": "2024-04-13",
         "location": "Saginaw, MI"
       }
@@ -81,7 +86,7 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "01102024_black_squirrel.jpg",
+        "filename": "01102024_black_squirrel.webp",
         "date": "2024-01-10",
         "location": "Deerfield, MI"
       }
@@ -93,7 +98,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "01102024_mourning_dove.jpg",
+        "filename": "01102024_mourning_dove.webp",
         "date": "2024-01-10",
         "location": "Mount Pleasant, MI"
       }
@@ -105,7 +110,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "01172024_american_robin.jpg",
+        "filename": "01172024_american_robin.webp",
         "date": "2024-01-17",
         "location": "Mount Pleasant, MI"
       }
@@ -117,17 +122,17 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "02032024_redtailed_hawk.jpg",
+        "filename": "02032024_redtailed_hawk.webp",
         "date": "2024-02-03",
         "location": "Munger, MI"
       },
       {
-        "filename": "0120224_redtailed_hawk.jpg",
+        "filename": "0120224_redtailed_hawk.webp",
         "date": "2024-01-20",
         "location": "Unionville, MI"
       },
       {
-        "filename": "240413_readtailed_hawk.jpg",
+        "filename": "240413_readtailed_hawk.webp",
         "date": "2024-04-13",
         "location": "Saginaw, MI"
       }
@@ -139,7 +144,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "01282024_trumpeter_swan.jpg",
+        "filename": "01282024_trumpeter_swan.webp",
         "date": "2024-01-28",
         "location": "Munger, MI"
       }
@@ -151,12 +156,12 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "0202020_eastern_bluebird_2.jpg",
+        "filename": "0202020_eastern_bluebird_2.webp",
         "date": "2020-02-02",
         "location": "Leoni, MI"
       },
       {
-        "filename": "05202020_eastern_bluebird.jpg",
+        "filename": "05202020_eastern_bluebird.webp",
         "date": "2020-05-20",
         "location": "Leoni, MI"
       }
@@ -168,7 +173,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "02032024_american_kestrel.jpg",
+        "filename": "02032024_american_kestrel.webp",
         "date": "2024-02-03",
         "location": "Munger, MI"
       }
@@ -180,7 +185,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "02032024_snowy_owl.jpg",
+        "filename": "02032024_snowy_owl.webp",
         "date": "2024-02-03",
         "location": "Munger, MI"
       }
@@ -192,7 +197,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "04-08-20 cedar waxwing.jpg",
+        "filename": "04-08-20 cedar waxwing.webp",
         "date": "2020-04-08",
         "location": "Leoni, MI"
       }
@@ -204,7 +209,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "04082020_brown_headed_cowbird.jpg",
+        "filename": "04082020_brown_headed_cowbird.webp",
         "date": "2020-04-08",
         "location": "Leoni, MI"
       }
@@ -216,7 +221,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "05052021_wild_turkey.jpg",
+        "filename": "05052021_wild_turkey.webp",
         "date": "2021-05-05",
         "location": "Alma, MI"
       }
@@ -228,7 +233,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "05202020_baltimore_oriole.jpg",
+        "filename": "05202020_baltimore_oriole.webp",
         "date": "2020-05-20",
         "location": "Leoni, MI"
       }
@@ -240,7 +245,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "05202020_red_breasted_grosbeak.jpg",
+        "filename": "05202020_red_breasted_grosbeak.webp",
         "date": "2020-05-20",
         "location": "Leoni, MI"
       }
@@ -252,7 +257,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "05202020_ruby_throated_humming_bird.jpg",
+        "filename": "05202020_ruby_throated_humming_bird.webp",
         "date": "2020-05-20",
         "location": "Leoni, MI"
       }
@@ -264,7 +269,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "05242019_burrowing_owl.jpg",
+        "filename": "05242019_burrowing_owl.webp",
         "date": "2019-05-24",
         "location": "Pampa, TX"
       }
@@ -276,12 +281,12 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "05242021_ring-billed-gull.jpg",
+        "filename": "05242021_ring-billed-gull.webp",
         "date": "2021-05-24",
         "location": "St. Ignace, MI"
       },
       {
-        "filename": "07212019_ring_billed_gull.jpg",
+        "filename": "07212019_ring_billed_gull.webp",
         "date": "2019-07-21",
         "location": null
       }
@@ -293,7 +298,7 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "05272019_mule_deer.jpg",
+        "filename": "05272019_mule_deer.webp",
         "date": "2019-05-27",
         "location": "Morrison, CO"
       }
@@ -305,17 +310,17 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "20220720_elk.jpg",
+        "filename": "20220720_elk.webp",
         "date": "2022-07-20",
         "location": "Johannesburg, MI"
       },
       {
-        "filename": "07092021_elk.jpg",
+        "filename": "07092021_elk.webp",
         "date": "2021-07-09",
         "location": "Johannesburg, MI"
       },
       {
-        "filename": "07202022_elk.jpg",
+        "filename": "07202022_elk.webp",
         "date": "2022-07-20",
         "location": "Larimer County, CO"
       }
@@ -327,21 +332,9 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "07202022_golden_mantled_ground_squirrel.jpg",
+        "filename": "07202022_golden_mantled_ground_squirrel.webp",
         "date": "2022-07-20",
         "location": "Larimer County, CO"
-      }
-    ]
-  },
-  {
-    "commonName": "Prairie Dog",
-    "scientificName": "Cynomys sp.",
-    "group": "Mammals",
-    "photos": [
-      {
-        "filename": "06012020_prarire_dog.jpg",
-        "date": "2020-06-01",
-        "location": "Custer County, SD"
       }
     ]
   },
@@ -351,12 +344,12 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "07202022_moose.jpg",
+        "filename": "07202022_moose.webp",
         "date": "2022-07-20",
         "location": "Ward, CO"
       },
       {
-        "filename": "07202022_moose_2.jpg",
+        "filename": "07202022_moose_2.webp",
         "date": "2022-07-20",
         "location": "Ward, CO"
       }
@@ -368,12 +361,12 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "09292021_wood_duck.jpg",
+        "filename": "09292021_wood_duck.webp",
         "date": "2021-09-29",
         "location": "Mount Pleasant, MI"
       },
       {
-        "filename": "09292020_wood_duck.jpg",
+        "filename": "09292020_wood_duck.webp",
         "date": "2020-09-29",
         "location": "Mount Pleasant, MI"
       }
@@ -385,12 +378,12 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "09292021_great_blue_heron.jpg",
+        "filename": "09292021_great_blue_heron.webp",
         "date": "2021-09-29",
         "location": "Mount Pleasant, MI"
       },
       {
-        "filename": "240413_great_blue_heron.jpg",
+        "filename": "240413_great_blue_heron.webp",
         "date": "2024-04-13",
         "location": "Saginaw, MI"
       }
@@ -402,7 +395,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20240601_tree_swallow.jpg",
+        "filename": "20240601_tree_swallow.webp",
         "date": "2024-06-01",
         "location": "Quanicassee, MI"
       }
@@ -414,7 +407,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20240706-1522_MALLARD.jpg",
+        "filename": "20240706-1522_MALLARD.webp",
         "date": "2024-07-06",
         "location": "Bay City, MI"
       }
@@ -426,7 +419,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20240706-1741_GREATWHITE-EGRET-2.jpg",
+        "filename": "20240706-1741_GREATWHITE-EGRET-2.webp",
         "date": "2024-07-06",
         "location": "Bay City, MI"
       }
@@ -438,12 +431,12 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20240706-1755_BALD-EAGLE.jpg",
+        "filename": "20240706-1755_BALD-EAGLE.webp",
         "date": "2024-07-06",
         "location": "Saginaw, MI"
       },
       {
-        "filename": "240413_bald_eagle.jpg",
+        "filename": "240413_bald_eagle.webp",
         "date": "2024-04-13",
         "location": "Bay City, MI"
       }
@@ -455,7 +448,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20240711_HOUSE-WREN.jpg",
+        "filename": "20240711_HOUSE-WREN.webp",
         "date": "2024-07-11",
         "location": "Leoni, MI"
       }
@@ -467,7 +460,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20240711_turkey_vulture.png",
+        "filename": "20240711_turkey_vulture.webp",
         "date": "2024-07-11",
         "location": "Leoni, MI"
       }
@@ -479,7 +472,12 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20240725_SANDHILLCRANE.png",
+        "filename": "20240725_SANDHILLCRANE.webp",
+        "date": "2024-07-25",
+        "location": "Leoni, MI"
+      },
+      {
+        "filename": "20240725-1153_sandhill_crane.webp",
         "date": "2024-07-25",
         "location": "Leoni, MI"
       }
@@ -491,19 +489,24 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "20250521-0018_bison.jpg",
+        "filename": "20250521-0018_bison.webp",
         "date": "2025-05-21",
         "location": "Interior, SD"
       },
       {
-        "filename": "20250521-0139_bison.jpg",
+        "filename": "20250521-0139_bison.webp",
         "date": "2025-05-21",
         "location": "Interior, SD"
       },
       {
-        "filename": "06012020_bison.jpg",
+        "filename": "06012020_bison.webp",
         "date": "2020-06-01",
         "location": "Custer County, SD"
+      },
+      {
+        "filename": "20250521-0027_bison.webp",
+        "date": "2025-05-21",
+        "location": "Interior, SD"
       }
     ]
   },
@@ -513,7 +516,7 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "20250901_pronghorn.jpg",
+        "filename": "20250901_pronghorn.webp",
         "date": "2025-09-01",
         "location": "Froid, MT"
       }
@@ -525,7 +528,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "20260722_gray-partridge.png",
+        "filename": "20260722_gray-partridge.webp",
         "date": "2026-07-22",
         "location": "Grand Forks, ND"
       }
@@ -537,7 +540,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "240413_american_coot.jpg",
+        "filename": "240413_american_coot.webp",
         "date": "2024-04-13",
         "location": "Saginaw, MI"
       }
@@ -549,7 +552,7 @@
     "group": "Mammals",
     "photos": [
       {
-        "filename": "240413_mustrat.jpg",
+        "filename": "240413_mustrat.webp",
         "date": "2024-04-13",
         "location": "Saginaw, MI"
       }
@@ -561,7 +564,7 @@
     "group": "Reptiles",
     "photos": [
       {
-        "filename": "240413_painted_turtles.jpg",
+        "filename": "240413_painted_turtles.webp",
         "date": "2024-04-13",
         "location": "Saginaw, MI"
       }
@@ -573,7 +576,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "240413_readwing_blackbird.jpg",
+        "filename": "240413_readwing_blackbird.webp",
         "date": "2024-04-13",
         "location": "Saginaw, MI"
       }
@@ -585,7 +588,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "240413_white_breasted_nuthatch.jpg",
+        "filename": "240413_white_breasted_nuthatch.webp",
         "date": "2024-04-13",
         "location": "Saginaw, MI"
       }
@@ -597,7 +600,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "240506_bluejay.jpg",
+        "filename": "240506_bluejay.webp",
         "date": "2024-05-06",
         "location": "Leoni, MI"
       }
@@ -609,7 +612,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "240506_house_sparrow.jpg",
+        "filename": "240506_house_sparrow.webp",
         "date": "2024-05-06",
         "location": "Leoni, MI"
       }
@@ -621,7 +624,7 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "240506_northern_cardinal.jpg",
+        "filename": "240506_northern_cardinal.webp",
         "date": "2024-05-06",
         "location": "Leoni, MI"
       }
@@ -633,9 +636,96 @@
     "group": "Birds",
     "photos": [
       {
-        "filename": "240506_tuffed_titmouse.jpg",
+        "filename": "240506_tuffed_titmouse.webp",
         "date": "2024-05-06",
         "location": "Saginaw, MI"
+      }
+    ]
+  },
+  {
+    "commonName": "Common Yellowthroat",
+    "scientificName": "Geothlypis trichas",
+    "group": "Birds",
+    "photos": [
+      {
+        "filename": "20240725-1317_yellowthroat.webp",
+        "date": "2024-07-25",
+        "location": "Leoni, MI"
+      },
+      {
+        "filename": "20240724-1213_yellowthroat_2.webp",
+        "date": "2024-07-24",
+        "location": "Leoni, MI"
+      }
+    ]
+  },
+  {
+    "commonName": "Fox Sparrow",
+    "scientificName": "Passerella iliaca",
+    "group": "Birds",
+    "photos": [
+      {
+        "filename": "20240724-1219_fox_sparrow.webp",
+        "date": "2024-07-25",
+        "location": "Leoni, MI"
+      },
+      {
+        "filename": "20240725-1159_fox_sparrow.webp",
+        "date": "2024-07-24",
+        "location": "Leoni, MI"
+      }
+    ]
+  },
+  {
+    "commonName": "Belted Kingfisher",
+    "scientificName": "Megaceryle alcyon",
+    "group": "Birds",
+    "photos": [
+      {
+        "filename": "20240725-1243_kingfisher.webp",
+        "date": "2024-07-25",
+        "location": "Leoni, MI"
+      }
+    ]
+  },
+  {
+    "commonName": "Gray Catbird",
+    "scientificName": "Dumetella carolinensis",
+    "group": "Birds",
+    "photos": [
+      {
+        "filename": "20240725-1323_gray_catbird.webp",
+        "date": "2024-07-25",
+        "location": "Leoni, MI"
+      }
+    ]
+  },
+  {
+    "commonName": "Rocky Mountain Bighorn Sheep",
+    "scientificName": "Ovis canadensis",
+    "group": "Mammals",
+    "photos": [
+      {
+        "filename": "20250520-2145_rocky_mountain_bighorn_sheep.webp",
+        "date": "2025-05-20",
+        "location": "Interior, SD"
+      }
+    ]
+  },
+  {
+    "commonName": "Black-tailed Prairie Dog",
+    "scientificName": "Cynomys ludovicianus",
+    "group": "Mammals",
+    "photos": [
+      {
+        "filename": "20250520-2217_black_tailed_prairie_dog.webp",
+        "date": "2025-05-20",
+        "location": "Interior, SD"
+      },
+      {
+        "filename": "06012020_prarire_dog.webp",
+        "date": "2020-06-01",
+        "location": "Custer County, SD"
       }
     ]
   }
