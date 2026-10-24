@@ -3,3 +3,8 @@ dist/
 .astro/
 .env*
 *.xml
+
+# Keep full-resolution wildlife originals local; publish optimized WebP files only.
+/public/images_wildlife/*.jpg
+/public/images_wildlife/*.jpeg
+/public/images_wildlife/*.png
