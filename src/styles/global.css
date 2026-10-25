@@ -198,12 +198,13 @@ main { min-height: 65vh; }
 .home-card .card-body { display: flex; flex-direction: column; padding: 1.1rem 1.3rem; }
 .home-card h3 { font-size: 1.55rem; }
 .home-card .card-link { margin-top: .65rem; }
-.home-highlights { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: clamp(2rem, 4vw, 3rem) 0 2rem; }
+.home-highlights { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding: clamp(2rem, 4vw, 3rem) 0 2rem; }
 .home-highlights::before { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--line-strong) 12%, var(--ochre) 50%, var(--line-strong) 88%, transparent); content: ''; opacity: .8; }
 .home-highlight { position: relative; isolation: isolate; overflow: hidden; min-width: 0; padding: clamp(1.3rem, 3vw, 2rem); border: 1px solid var(--line-strong); border-radius: 8px; background: linear-gradient(145deg, rgb(205 188 150 / 5%), transparent 70%), var(--paper-light); box-shadow: var(--shadow-soft); }
 .home-highlight::after { position: absolute; z-index: -1; inset: 0; background: var(--panel-image) center / cover no-repeat; content: ''; opacity: .16; }
 .home-research::after { opacity: .09; }
 .home-field-note::after { opacity: .23; }
+.home-wildlife::after { opacity: .2; }
 .home-eyebrow { margin: 0 0 .45rem; color: var(--ochre); font-size: .78rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
 .home-field-note { background: linear-gradient(145deg, rgb(188 144 116 / 6%), transparent 70%), var(--paper-light); }
 .home-highlight h2 { margin: 0 0 .7rem; color: var(--forest-deep); font-family: var(--serif); font-size: clamp(1.45rem, 2.6vw, 2rem); font-weight: 550; line-height: 1.2; }
@@ -558,6 +559,10 @@ footer {
   .work-cards { grid-template-columns: 1fr; }
   .hero { padding-top: 3.5rem; }
   .section-heading { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 1000px) and (min-width: 761px) {
+  .home-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 600px) {
