@@ -7,29 +7,51 @@
       {
         "filename": "20240725_whitetailed_deer.webp",
         "date": "2024-07-25",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "01022022_whitetailed_deer.webp",
         "date": "2022-01-02",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "20240724-1240_white_tailed_deer.webp",
         "date": "2024-07-24",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "01022022_whitetailed_deer_2.webp",
         "date": "2022-01-02",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "01202024_whitetailed_deer.webp",
         "date": "2024-01-20",
-        "location": "Reese, MI"
+        "location": "Reese, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/42223-Odocoileus-virginianus",
+    "family": "Cervidae"
   },
   {
     "commonName": "Fox Squirrel",
@@ -39,19 +61,33 @@
       {
         "filename": "01052022_fox_squirrel.webp",
         "date": "2022-01-05",
-        "location": "Mount Pleasant, MI"
+        "location": "Mount Pleasant, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "01202024_fox_squirrel.webp",
         "date": "2024-01-20",
-        "location": "Reese, MI"
+        "location": "Reese, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "240505_fox_squirrl.webp",
         "date": "2024-05-05",
-        "location": "Albion, MI"
+        "location": "Albion, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/46020-Sciurus-niger",
+    "family": "Sciuridae"
   },
   {
     "commonName": "Canada Goose",
@@ -61,24 +97,42 @@
       {
         "filename": "20240706-1527_CANADAGOOSE.webp",
         "date": "2024-07-06",
-        "location": "Bay City, MI"
+        "location": "Bay City, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "05052021_canadian_goose.webp",
         "date": "2021-05-05",
-        "location": "Millbrook, MI"
+        "location": "Millbrook, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "01092024_canadian_goose.webp",
         "date": "2024-01-09",
-        "location": "Deerfield, MI"
+        "location": "Deerfield, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "240413_canadian_goose.webp",
         "date": "2024-04-13",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/cangoo",
+    "family": "Anatidae"
   },
   {
     "commonName": "Eastern Gray Squirrel",
@@ -88,9 +142,15 @@
       {
         "filename": "01102024_black_squirrel.webp",
         "date": "2024-01-10",
-        "location": "Deerfield, MI"
+        "location": "Deerfield, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/46017-Sciurus-carolinensis",
+    "family": "Sciuridae"
   },
   {
     "commonName": "Mourning Dove",
@@ -100,9 +160,15 @@
       {
         "filename": "01102024_mourning_dove.webp",
         "date": "2024-01-10",
-        "location": "Mount Pleasant, MI"
+        "location": "Mount Pleasant, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/moudov",
+    "family": "Columbidae"
   },
   {
     "commonName": "American Robin",
@@ -112,9 +178,15 @@
       {
         "filename": "01172024_american_robin.webp",
         "date": "2024-01-17",
-        "location": "Mount Pleasant, MI"
+        "location": "Mount Pleasant, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/amerob",
+    "family": "Turdidae"
   },
   {
     "commonName": "Red-tailed Hawk",
@@ -124,19 +196,33 @@
       {
         "filename": "02032024_redtailed_hawk.webp",
         "date": "2024-02-03",
-        "location": "Munger, MI"
+        "location": "Munger, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "0120224_redtailed_hawk.webp",
         "date": "2024-01-20",
-        "location": "Unionville, MI"
+        "location": "Unionville, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "240413_readtailed_hawk.webp",
         "date": "2024-04-13",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/rethaw",
+    "family": "Accipitridae"
   },
   {
     "commonName": "Trumpeter Swan",
@@ -146,9 +232,15 @@
       {
         "filename": "01282024_trumpeter_swan.webp",
         "date": "2024-01-28",
-        "location": "Munger, MI"
+        "location": "Munger, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/truswa",
+    "family": "Anatidae"
   },
   {
     "commonName": "Eastern Bluebird",
@@ -158,14 +250,24 @@
       {
         "filename": "0202020_eastern_bluebird_2.webp",
         "date": "2020-02-02",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "05202020_eastern_bluebird.webp",
         "date": "2020-05-20",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/easblu",
+    "family": "Turdidae"
   },
   {
     "commonName": "American Kestrel",
@@ -175,9 +277,15 @@
       {
         "filename": "02032024_american_kestrel.webp",
         "date": "2024-02-03",
-        "location": "Munger, MI"
+        "location": "Munger, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/amekes",
+    "family": "Falconidae"
   },
   {
     "commonName": "Snowy Owl",
@@ -187,9 +295,15 @@
       {
         "filename": "02032024_snowy_owl.webp",
         "date": "2024-02-03",
-        "location": "Munger, MI"
+        "location": "Munger, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/snoowl1",
+    "family": "Strigidae"
   },
   {
     "commonName": "Cedar Waxwing",
@@ -199,9 +313,15 @@
       {
         "filename": "04-08-20 cedar waxwing.webp",
         "date": "2020-04-08",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/cedwax",
+    "family": "Bombycillidae"
   },
   {
     "commonName": "Brown-Headed Cowbird",
@@ -211,9 +331,15 @@
       {
         "filename": "04082020_brown_headed_cowbird.webp",
         "date": "2020-04-08",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/bnhcow",
+    "family": "Icteridae"
   },
   {
     "commonName": "Wild Turkey",
@@ -223,9 +349,15 @@
       {
         "filename": "05052021_wild_turkey.webp",
         "date": "2021-05-05",
-        "location": "Alma, MI"
+        "location": "Alma, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/wiltur",
+    "family": "Phasianidae"
   },
   {
     "commonName": "Baltimore Oriole",
@@ -235,9 +367,15 @@
       {
         "filename": "05202020_baltimore_oriole.webp",
         "date": "2020-05-20",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/balori",
+    "family": "Icteridae"
   },
   {
     "commonName": "Rose-breasted Grosbeak",
@@ -247,9 +385,15 @@
       {
         "filename": "05202020_red_breasted_grosbeak.webp",
         "date": "2020-05-20",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/robgro",
+    "family": "Cardinalidae"
   },
   {
     "commonName": "Ruby-throated Hummingbird",
@@ -259,9 +403,15 @@
       {
         "filename": "05202020_ruby_throated_humming_bird.webp",
         "date": "2020-05-20",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/rubyth",
+    "family": "Trochilidae"
   },
   {
     "commonName": "Burrowing Owl",
@@ -271,9 +421,15 @@
       {
         "filename": "05242019_burrowing_owl.webp",
         "date": "2019-05-24",
-        "location": "Pampa, TX"
+        "location": "Pampa, TX",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/burowl",
+    "family": "Strigidae"
   },
   {
     "commonName": "Ring-billed Gull",
@@ -283,14 +439,24 @@
       {
         "filename": "05242021_ring-billed-gull.webp",
         "date": "2021-05-24",
-        "location": "St. Ignace, MI"
+        "location": "St. Ignace, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "07212019_ring_billed_gull.webp",
         "date": "2019-07-21",
-        "location": null
+        "location": null,
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/ribgul",
+    "family": "Laridae"
   },
   {
     "commonName": "Mule Deer",
@@ -300,31 +466,51 @@
       {
         "filename": "05272019_mule_deer.webp",
         "date": "2019-05-27",
-        "location": "Morrison, CO"
+        "location": "Morrison, CO",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/42220-Odocoileus-hemionus",
+    "family": "Cervidae"
   },
   {
-    "commonName": "Elk",
+    "commonName": "Wapiti (Elk)",
     "scientificName": "Cervus canadensis",
     "group": "Mammals",
     "photos": [
       {
         "filename": "20220720_elk.webp",
         "date": "2022-07-20",
-        "location": "Johannesburg, MI"
+        "location": "Johannesburg, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "07092021_elk.webp",
         "date": "2021-07-09",
-        "location": "Johannesburg, MI"
+        "location": "Johannesburg, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "07202022_elk.webp",
         "date": "2022-07-20",
-        "location": "Larimer County, CO"
+        "location": "Larimer County, CO",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/204114-Cervus-canadensis",
+    "family": "Cervidae"
   },
   {
     "commonName": "Golden-mantled Ground Squirrel",
@@ -334,9 +520,15 @@
       {
         "filename": "07202022_golden_mantled_ground_squirrel.webp",
         "date": "2022-07-20",
-        "location": "Larimer County, CO"
+        "location": "Larimer County, CO",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/43698-Callospermophilus-lateralis",
+    "family": "Sciuridae"
   },
   {
     "commonName": "Moose",
@@ -346,14 +538,24 @@
       {
         "filename": "07202022_moose.webp",
         "date": "2022-07-20",
-        "location": "Ward, CO"
+        "location": "Ward, CO",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "07202022_moose_2.webp",
         "date": "2022-07-20",
-        "location": "Ward, CO"
+        "location": "Ward, CO",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/522193-Alces-alces",
+    "family": "Cervidae"
   },
   {
     "commonName": "Wood Duck",
@@ -363,14 +565,24 @@
       {
         "filename": "09292021_wood_duck.webp",
         "date": "2021-09-29",
-        "location": "Mount Pleasant, MI"
+        "location": "Mount Pleasant, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "09292020_wood_duck.webp",
         "date": "2020-09-29",
-        "location": "Mount Pleasant, MI"
+        "location": "Mount Pleasant, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/wooduc",
+    "family": "Anatidae"
   },
   {
     "commonName": "Great Blue Heron",
@@ -380,14 +592,24 @@
       {
         "filename": "09292021_great_blue_heron.webp",
         "date": "2021-09-29",
-        "location": "Mount Pleasant, MI"
+        "location": "Mount Pleasant, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "240413_great_blue_heron.webp",
         "date": "2024-04-13",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/grbher3",
+    "family": "Ardeidae"
   },
   {
     "commonName": "Tree Swallow",
@@ -397,9 +619,15 @@
       {
         "filename": "20240601_tree_swallow.webp",
         "date": "2024-06-01",
-        "location": "Quanicassee, MI"
+        "location": "Quanicassee, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/treswa",
+    "family": "Hirundinidae"
   },
   {
     "commonName": "Mallard",
@@ -409,9 +637,15 @@
       {
         "filename": "20240706-1522_MALLARD.webp",
         "date": "2024-07-06",
-        "location": "Bay City, MI"
+        "location": "Bay City, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/mallar3",
+    "family": "Anatidae"
   },
   {
     "commonName": "Great Egret",
@@ -421,9 +655,15 @@
       {
         "filename": "20240706-1741_GREATWHITE-EGRET-2.webp",
         "date": "2024-07-06",
-        "location": "Bay City, MI"
+        "location": "Bay City, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/greegr",
+    "family": "Ardeidae"
   },
   {
     "commonName": "Bald Eagle",
@@ -433,14 +673,24 @@
       {
         "filename": "20240706-1755_BALD-EAGLE.webp",
         "date": "2024-07-06",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "240413_bald_eagle.webp",
         "date": "2024-04-13",
-        "location": "Bay City, MI"
+        "location": "Bay City, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/baleag",
+    "family": "Accipitridae"
   },
   {
     "commonName": "House Wren",
@@ -450,9 +700,15 @@
       {
         "filename": "20240711_HOUSE-WREN.webp",
         "date": "2024-07-11",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/houwre",
+    "family": "Troglodytidae"
   },
   {
     "commonName": "Turkey Vulture",
@@ -462,9 +718,15 @@
       {
         "filename": "20240711_turkey_vulture.webp",
         "date": "2024-07-11",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/turvul",
+    "family": "Cathartidae"
   },
   {
     "commonName": "Sandhill Crane",
@@ -474,14 +736,24 @@
       {
         "filename": "20240725_SANDHILLCRANE.webp",
         "date": "2024-07-25",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "20240725-1153_sandhill_crane.webp",
         "date": "2024-07-25",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/sancra",
+    "family": "Gruidae"
   },
   {
     "commonName": "American Bison",
@@ -491,24 +763,42 @@
       {
         "filename": "20250521-0018_bison.webp",
         "date": "2025-05-21",
-        "location": "Interior, SD"
+        "location": "Interior, SD",
+        "description": "South Dakota Badlands National Park.",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "20250521-0139_bison.webp",
         "date": "2025-05-21",
-        "location": "Interior, SD"
+        "location": "Interior, SD",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "06012020_bison.webp",
         "date": "2020-06-01",
-        "location": "Custer County, SD"
+        "location": "Custer County, SD",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "20250521-0027_bison.webp",
         "date": "2025-05-21",
-        "location": "Interior, SD"
+        "location": "Interior, SD",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/208700-Bos-bison",
+    "family": "Bovidae"
   },
   {
     "commonName": "Pronghorn",
@@ -518,9 +808,15 @@
       {
         "filename": "20250901_pronghorn.webp",
         "date": "2025-09-01",
-        "location": "Froid, MT"
+        "location": "Froid, MT",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/42429-Antilocapra-americana",
+    "family": "Antilocapridae"
   },
   {
     "commonName": "Gray Partridge",
@@ -530,9 +826,15 @@
       {
         "filename": "20260722_gray-partridge.webp",
         "date": "2026-07-22",
-        "location": "Grand Forks, ND"
+        "location": "Grand Forks, ND",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/grypar",
+    "family": "Phasianidae"
   },
   {
     "commonName": "American Coot",
@@ -542,9 +844,15 @@
       {
         "filename": "240413_american_coot.webp",
         "date": "2024-04-13",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/amecoot",
+    "family": "Rallidae"
   },
   {
     "commonName": "Muskrat",
@@ -554,9 +862,15 @@
       {
         "filename": "240413_mustrat.webp",
         "date": "2024-04-13",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/45763-Ondatra-zibethicus",
+    "family": "Cricetidae"
   },
   {
     "commonName": "Painted Turtle",
@@ -566,9 +880,15 @@
       {
         "filename": "240413_painted_turtles.webp",
         "date": "2024-04-13",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/39771-Chrysemys-picta",
+    "family": "Emydidae"
   },
   {
     "commonName": "Red-winged Blackbird",
@@ -578,9 +898,15 @@
       {
         "filename": "240413_readwing_blackbird.webp",
         "date": "2024-04-13",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/rewbla",
+    "family": "Icteridae"
   },
   {
     "commonName": "White-breasted Nuthatch",
@@ -590,9 +916,15 @@
       {
         "filename": "240413_white_breasted_nuthatch.webp",
         "date": "2024-04-13",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/whbnut",
+    "family": "Sittidae"
   },
   {
     "commonName": "Blue Jay",
@@ -602,9 +934,15 @@
       {
         "filename": "240506_bluejay.webp",
         "date": "2024-05-06",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/blujay",
+    "family": "Corvidae"
   },
   {
     "commonName": "House Sparrow",
@@ -614,9 +952,15 @@
       {
         "filename": "240506_house_sparrow.webp",
         "date": "2024-05-06",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/houspa",
+    "family": "Passeridae"
   },
   {
     "commonName": "Northern Cardinal",
@@ -626,9 +970,15 @@
       {
         "filename": "240506_northern_cardinal.webp",
         "date": "2024-05-06",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/norcar",
+    "family": "Cardinalidae"
   },
   {
     "commonName": "Tufted Titmouse",
@@ -638,9 +988,15 @@
       {
         "filename": "240506_tuffed_titmouse.webp",
         "date": "2024-05-06",
-        "location": "Saginaw, MI"
+        "location": "Saginaw, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/tuftit",
+    "family": "Paridae"
   },
   {
     "commonName": "Common Yellowthroat",
@@ -650,14 +1006,24 @@
       {
         "filename": "20240725-1317_yellowthroat.webp",
         "date": "2024-07-25",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "20240724-1213_yellowthroat_2.webp",
         "date": "2024-07-24",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/comyel",
+    "family": "Parulidae"
   },
   {
     "commonName": "Fox Sparrow",
@@ -667,14 +1033,24 @@
       {
         "filename": "20240724-1219_fox_sparrow.webp",
         "date": "2024-07-25",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "20240725-1159_fox_sparrow.webp",
         "date": "2024-07-24",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/foxspa",
+    "family": "Passerellidae"
   },
   {
     "commonName": "Belted Kingfisher",
@@ -684,9 +1060,15 @@
       {
         "filename": "20240725-1243_kingfisher.webp",
         "date": "2024-07-25",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/belkin1",
+    "family": "Alcedinidae"
   },
   {
     "commonName": "Gray Catbird",
@@ -696,9 +1078,15 @@
       {
         "filename": "20240725-1323_gray_catbird.webp",
         "date": "2024-07-25",
-        "location": "Leoni, MI"
+        "location": "Leoni, MI",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "ebirdUrl": "https://ebird.org/species/grycat",
+    "family": "Mimidae"
   },
   {
     "commonName": "Rocky Mountain Bighorn Sheep",
@@ -708,9 +1096,15 @@
       {
         "filename": "20250520-2145_rocky_mountain_bighorn_sheep.webp",
         "date": "2025-05-20",
-        "location": "Interior, SD"
+        "location": "Interior, SD",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/42391-Ovis-canadensis",
+    "family": "Bovidae"
   },
   {
     "commonName": "Black-tailed Prairie Dog",
@@ -720,13 +1114,23 @@
       {
         "filename": "20250520-2217_black_tailed_prairie_dog.webp",
         "date": "2025-05-20",
-        "location": "Interior, SD"
+        "location": "Interior, SD",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       },
       {
         "filename": "06012020_prarire_dog.webp",
         "date": "2020-06-01",
-        "location": "Custer County, SD"
+        "location": "Custer County, SD",
+        "description": "",
+        "weather": "",
+        "behavior": "",
+        "habitat": ""
       }
-    ]
+    ],
+    "iNaturalistUrl": "https://www.inaturalist.org/taxa/46179-Cynomys-ludovicianus",
+    "family": "Sciuridae"
   }
 ]

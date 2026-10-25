@@ -7,6 +7,14 @@ const title = "Wildlife Field Notes";
 const description = "A field-notes gallery of wildlife photographs by Kyle J. Gillett, with species, dates, and observation details.";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+const seasonForDate = (date) => {
+  if (!date) return "";
+  const month = Number(date.slice(5, 7));
+  if (month === 12 || month <= 2) return "Winter";
+  if (month <= 5) return "Spring";
+  if (month <= 8) return "Summer";
+  return "Autumn";
+};
 
 // Panel order is controlled here. Species not listed below appear alphabetically
 // after the listed species in their group. Keep the arrays grouped by the same
@@ -22,14 +30,13 @@ const speciesOrder = [
   "Common Yellowthroat", "Eastern Bluebird", "Fox Sparrow", "House Sparrow", "Tufted Titmouse", "House Wren", "Blue Jay", "Northern Cardinal", "American Robin", "Baltimore Oriole", "Cedar Waxwing", "Gray Catbird", "Red-winged Blackbird", "Cowbird",
   "Rose-breasted Grosbeak", "Tree Swallow", "White-breasted Nuthatch", "Ruby-throated Hummingbird",
   // Mammals: deer and relatives, large mammals, squirrels and other mammals.
-  "White-tailed Deer", "Mule Deer", "Elk", "Moose",
-  "American Bison", "Pronghorn", "Rocky Mountain Bighorn Sheep",
+  "White-tailed Deer", "Mule Deer", "Wapiti (Elk)", "Moose",
+  "American Bison", "Rocky Mountain Bighorn Sheep", "Pronghorn",
   "Eastern Gray Squirrel", "Black Squirrel", "Fox Squirrel", "Golden-mantled Ground Squirrel", "Black-tailed Prairie Dog", "Muskrat",
   // Reptiles and any other groups can be added below; unlisted species sort alphabetically last.
   "Painted Turtle",
 ];
 const speciesOrderIndex = new Map(speciesOrder.map((name, index) => [name, index]));
-
 const observations = wildlifeMetadata
   .map((species) => {
     const photos = species.photos
@@ -44,8 +51,11 @@ const observations = wildlifeMetadata
       });
     return {
       group: species.group,
+      family: species.family || "",
       name: species.commonName,
       scientific: species.scientificName,
+      ebirdUrl: species.ebirdUrl || "",
+      iNaturalistUrl: species.iNaturalistUrl || "",
       photos,
     };
   })
@@ -54,22 +64,35 @@ const observations = wildlifeMetadata
     const bOrder = speciesOrderIndex.get(b.name) ?? Number.MAX_SAFE_INTEGER;
     return aOrder - bOrder || a.name.localeCompare(b.name);
   });
-const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => observations.some((item) => item.group === section));
+const sections = ["Birds", "Mammals", "Reptiles"].filter((section) => observations.some((item) => item.group === section));
+const totalPhotos = observations.reduce((total, item) => total + item.photos.length, 0);
 ---
 
 <BaseLayout title={title} description={description}>
   <article class="container field-notes-page">
     <header class="field-notes-header">
-      <p class="field-notes-kicker">Wildlife Photography · Species Records</p>
-      <h1>{title}</h1>
-      <p class="field-notes-intro">A photographic record of observed wildlife, organized by species and accompanied by identification and observation details.</p>
-      <nav class="field-notes-index" aria-label="Field note categories">
-        {sections.map((section) => <a href={`#${section.toLowerCase()}`}>{section}<span>{observations.filter((item) => item.group === section).length}</span></a>)}
-      </nav>
-      <div class="field-notes-search">
-        <label for="species-search">Find a species</label>
-        <input id="species-search" type="search" placeholder="Search common or scientific name" autocomplete="off" data-species-search />
-        <p class="field-notes-search-status" data-search-status aria-live="polite">{observations.length} species</p>
+      <div class="field-notes-header-main">
+        <div class="field-notes-heading-copy">
+          <p class="field-notes-kicker">Wildlife photography · species records</p>
+          <h1>{title}</h1>
+        </div>
+        <p class="field-notes-intro">A photographic record of observed wildlife, organized by species and accompanied by identification and observation details.</p>
+      </div>
+      <div class="field-notes-header-tools">
+        <div class="field-notes-index-summary">
+          <nav class="field-notes-index" aria-label="Field note categories">
+            {sections.map((section) => <a href={`#${section.toLowerCase()}`}>{section}</a>)}
+          </nav>
+          <div class="field-notes-overview-totals" aria-label={`${observations.length} species and ${totalPhotos} photographs`}>
+            <div class="field-notes-overview-metric"><strong>{observations.length}</strong><span>species</span></div>
+            <div class="field-notes-overview-metric"><strong>{totalPhotos}</strong><span>photos</span></div>
+          </div>
+        </div>
+        <div class="field-notes-search">
+          <label for="species-search">Find a species</label>
+          <input id="species-search" type="search" placeholder="Common or scientific name" autocomplete="off" data-species-search />
+          <p class="field-notes-search-status" data-search-status aria-live="polite">{observations.length} species</p>
+        </div>
       </div>
     </header>
 
@@ -80,31 +103,39 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
           <h2 id={`${section.toLowerCase()}-heading`}>{section}</h2>
         </div>
         <div class="field-notes-grid">
-          {observations.filter((item) => item.group === section).map((item, index) => {
+          {observations.filter((item) => item.group === section).map((item) => {
             const photos = item.photos;
             const slideData = photos.map((photo) => ({ src: photo.thumbnailSrc, alt: photo.alt }));
             return (
               <article class="field-note-card" data-species-card data-search-terms={`${item.name} ${item.scientific}`}>
-                <figure class="field-note-image" data-field-slideshow data-slides={JSON.stringify(slideData)} data-slide-dates={JSON.stringify(photos.map((photo) => photo.dateLabel))} data-slide-locations={JSON.stringify(photos.map((photo) => photo.location))}>
+                <figure class="field-note-image" data-field-slideshow data-slides={JSON.stringify(slideData)} data-slide-dates={JSON.stringify(photos.map((photo) => photo.dateLabel))} data-slide-locations={JSON.stringify(photos.map((photo) => photo.location))} data-slide-descriptions={JSON.stringify(photos.map((photo) => photo.description || ""))} data-slide-seasons={JSON.stringify(photos.map((photo) => photo.season || seasonForDate(photo.date)))} data-slide-weather={JSON.stringify(photos.map((photo) => photo.weather || ""))} data-slide-behavior={JSON.stringify(photos.map((photo) => photo.behavior || ""))} data-slide-habitat={JSON.stringify(photos.map((photo) => photo.habitat || ""))} data-current-slide="0">
                   <img src={slideData[0].src} alt={slideData[0].alt} loading="lazy" decoding="async" data-slide-image />
+                  <span class="field-note-photo-count" aria-label={`Photo 1 of ${photos.length}`}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="4" width="13" height="15" rx="2"/><path d="M4 8v11a2 2 0 0 0 2 2h10"/></svg>
+                    <span data-slide-count aria-live="polite">1 / {photos.length}</span>
+                  </span>
                   {photos.length > 1 && <>
-                    <span class="field-note-photo-count" aria-label={`${photos.length} photos in this field note`}>
-                      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="4" width="13" height="15" rx="2"/><path d="M4 8v11a2 2 0 0 0 2 2h10"/></svg>
-                      <span data-slide-count aria-live="polite">1 / {photos.length}</span>
-                    </span>
                     <button class="field-note-slide-button field-note-slide-previous" type="button" data-slide-previous aria-label="Show previous photo">‹</button>
                     <button class="field-note-slide-button field-note-slide-next" type="button" data-slide-next aria-label="Show next photo">›</button>
                   </>}
                 </figure>
                 <div class="field-note-copy">
                   <div class="field-note-title">
+                    {item.family && <p class="field-note-classification">{item.family}</p>}
                     <h3>{item.name}</h3>
                     <p class="field-note-scientific">{item.scientific}</p>
                   </div>
+                  <div hidden data-reference-links data-ebird-url={item.ebirdUrl} data-inaturalist-url={item.iNaturalistUrl}></div>
                   <dl class="field-note-details">
                     <div><dt>Observed</dt><dd><time data-slide-date>{photos[0].dateLabel}</time></dd></div>
                     <div><dt>Location</dt><dd data-slide-location>{photos[0].location || "Not listed"}</dd></div>
                   </dl>
+                  <div class="field-note-actions">
+                    <button class="field-note-action" type="button" data-description-open>
+                      Observation notes
+                      <span class="field-note-note-badge" data-notes-indicator aria-hidden="true" hidden>1</span>
+                    </button>
+                  </div>
                 </div>
               </article>
             );
@@ -112,6 +143,33 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
         </div>
       </section>
     ))}
+
+    <dialog class="field-note-dialog" data-description-dialog aria-labelledby="field-note-dialog-title">
+      <div class="field-note-dialog-inner">
+        <button class="field-note-dialog-close" type="button" data-description-close aria-label="Close observation notes">×</button>
+        <div class="field-note-dialog-topline">
+          <p class="field-notes-kicker">Observation notes</p>
+          <div class="field-note-dialog-links" data-dialog-links></div>
+        </div>
+        <div class="field-note-dialog-species">
+          <h2 id="field-note-dialog-title" data-dialog-name></h2>
+          <p class="field-note-scientific" data-dialog-scientific></p>
+          <p class="field-note-dialog-photo-id" data-dialog-photo-id></p>
+        </div>
+        <dl class="field-note-dialog-observation">
+          <div><dt>Observed</dt><dd data-dialog-date></dd></div>
+          <div><dt>Location</dt><dd data-dialog-location></dd></div>
+          <div><dt>Season</dt><dd data-dialog-season></dd></div>
+          <div><dt>Weather</dt><dd data-dialog-weather></dd></div>
+          <div><dt>Behavior</dt><dd data-dialog-behavior></dd></div>
+          <div><dt>Habitat</dt><dd data-dialog-habitat></dd></div>
+        </dl>
+        <section class="field-note-dialog-description-section" aria-labelledby="field-note-description-heading">
+          <h3 id="field-note-description-heading">Observation description</h3>
+          <p class="field-note-dialog-description" data-dialog-description></p>
+        </section>
+      </div>
+    </dialog>
 
     <footer class="field-notes-footer">
       <a class="field-notes-return" href={sitePath("/photography/")}><span aria-hidden="true">←</span> Back to Photo Gallery</a>
@@ -121,20 +179,28 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
 
 <style>
   .field-notes-page { padding-bottom: 4rem; }
-  .field-notes-header { max-width: 760px; margin: 0 auto; padding: clamp(3.5rem, 8vw, 6.5rem) 1rem 3rem; text-align: center; }
+  .field-notes-header { margin: 0 auto 2.5rem; padding: clamp(2.5rem, 5vw, 4.25rem) clamp(1rem, 3vw, 2.25rem) 1.25rem; border-bottom: 1px solid var(--line-strong); }
+  .field-notes-header-main { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(250px, .85fr); align-items: end; gap: clamp(1.5rem, 5vw, 4rem); }
+  .field-notes-heading-copy { padding-left: 1.1rem; border-left: 3px solid var(--ochre); }
+  .field-notes-heading-copy .field-notes-kicker { margin-bottom: .7rem; }
   .field-notes-kicker { margin: 0 0 .8rem; color: var(--ochre); font-size: .75rem; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
   .field-notes-header h1 { margin: 0; font-family: var(--serif); font-size: clamp(2.7rem, 7vw, 5rem); font-weight: 500; letter-spacing: -.045em; line-height: 1; }
-  .field-notes-intro { max-width: 600px; margin: 1.25rem auto 0; color: var(--ink-soft); font-family: var(--serif); font-size: 1.2rem; line-height: 1.65; }
-  .field-notes-index { display: flex; flex-wrap: wrap; justify-content: center; gap: .65rem; margin-top: 2rem; }
-  .field-notes-index a { display: flex; min-height: 2.6rem; align-items: center; gap: .7rem; padding: .5rem 1rem; border: 1px solid var(--line); border-radius: 99px; color: var(--ink); font-weight: 700; text-decoration: none; }
-  .field-notes-index a:hover { border-color: var(--ochre); }
-  .field-notes-index span { color: var(--ochre); font-size: .78rem; }
-  .field-notes-search { max-width: 440px; margin: 2rem auto 0; text-align: left; }
+  .field-notes-intro { max-width: 480px; margin: 0 0 .2rem; color: var(--ink-soft); font-family: var(--serif); font-size: 1.12rem; line-height: 1.55; }
+  .field-notes-header-tools { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+  .field-notes-index-summary { display: flex; min-width: 0; flex-wrap: wrap; align-items: center; gap: 1.1rem; }
+  .field-notes-index { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .field-notes-index a { display: flex; min-height: 2.75rem; align-items: center; padding: .45rem .85rem; border: 1px solid var(--line); border-radius: 5px; color: var(--ink); font-weight: 700; text-decoration: none; transition: border-color .18s ease, background-color .18s ease; }
+  .field-notes-index a:hover { border-color: var(--ochre); background: color-mix(in srgb, var(--ochre) 8%, var(--paper-light)); }
+  .field-notes-search { width: min(100%, 350px); flex: 0 1 350px; text-align: left; }
   .field-notes-search label { display: block; margin-bottom: .45rem; color: var(--ink-soft); font-size: .75rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
-  .field-notes-search input { width: 100%; min-height: 3rem; padding: .65rem .9rem; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--paper-light); color: var(--ink); font-size: 1rem; }
+  .field-notes-search input { box-sizing: border-box; width: 100%; min-height: 3rem; padding: .65rem .9rem; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--paper-light); color: var(--ink); font-size: 1rem; }
   .field-notes-search input::placeholder { color: var(--ink-soft); opacity: .75; }
   .field-notes-search input:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
-  .field-notes-search-status { min-height: 1.2em; margin: .45rem 0 0; color: var(--ink-soft); font-size: .8rem; }
+  .field-notes-search-status { min-height: 1.2em; margin: .35rem 0 0; color: var(--ink-soft); font-size: .76rem; text-align: right; }
+  .field-notes-overview-totals { display: flex; gap: 1.25rem; }
+  .field-notes-overview-metric { display: flex; align-items: baseline; gap: .4rem; white-space: nowrap; }
+  .field-notes-overview-metric strong { color: var(--ink); font-family: var(--serif); font-size: 1.5rem; font-weight: 600; line-height: 1; }
+  .field-notes-overview-metric span { color: var(--ink-soft); font-size: .73rem; }
   .field-notes-section { margin: 0 auto 4.5rem; }
   .field-notes-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin: 0 0 1.25rem; padding-bottom: .8rem; border-bottom: 1px solid var(--line-strong); }
   .field-notes-section-heading .field-notes-kicker { margin-bottom: .35rem; }
@@ -157,31 +223,81 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
   .field-note-slide-next { right: .7rem; }
   .field-note-copy { padding: 1.2rem 1.25rem 1.35rem; }
   .field-note-title { min-height: 6.8rem; }
+  .field-note-classification { margin: 0 0 .3rem; color: var(--ochre); font-size: .62rem; font-weight: 750; letter-spacing: .11em; line-height: 1.2; text-transform: uppercase; }
   .field-note-copy h3 { margin: 0; font-family: var(--serif); font-size: 1.55rem; font-weight: 600; line-height: 1.15; }
   .field-note-scientific { margin: .2rem 0 0; color: var(--ink-soft); font-family: var(--serif); font-size: 1rem; font-style: italic; line-height: 1.5; }
+  .field-note-actions { display: flex; margin-top: 1rem; }
+  .field-note-action { position: relative; display: inline-flex; width: 100%; min-height: 2.55rem; align-items: center; justify-content: center; gap: .35rem; padding: .45rem 2.3rem; border: 1px solid var(--line-strong); border-radius: 5px; background: transparent; color: var(--ink); cursor: pointer; font: inherit; font-size: .78rem; font-weight: 700; line-height: 1.2; text-decoration: none; transition: border-color .18s ease, background-color .18s ease; }
+  .field-note-note-badge { position: absolute; top: 50%; right: .7rem; display: grid; width: 1.3rem; height: 1.3rem; place-items: center; transform: translateY(-50%); border-radius: 50%; background: var(--ochre); color: var(--paper-light); font-size: .68rem; font-weight: 800; line-height: 1; }
+  .field-note-note-badge[hidden] { display: none; }
+  .field-note-action:hover { border-color: var(--ochre); color: var(--ink); }
+  .field-note-action:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
   .field-note-description { min-height: 3.2em; margin: .9rem 0 1rem; color: var(--ink-soft); line-height: 1.55; }
   .field-note-details { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; margin: 1.1rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line); }
   .field-note-details div { min-width: 0; }
   .field-note-details dt { margin-bottom: .35rem; color: var(--ink-soft); font-size: .67rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
   .field-note-details dd { margin: 0; font-size: .88rem; font-weight: 650; }
+  .field-note-dialog { width: min(90vw, 560px); max-width: none; max-height: min(80vh, 700px); padding: 0; border: 1px solid var(--line-strong); background: var(--paper-light); color: var(--ink); box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 25%); }
+  .field-note-dialog::backdrop { background: rgb(15 19 16 / 68%); backdrop-filter: blur(3px); }
+  .field-note-dialog-inner { position: relative; padding: clamp(1.5rem, 5vw, 2.5rem); text-align: left; }
+  .field-note-dialog-close { position: absolute; top: .75rem; right: .85rem; display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; font-size: 1.6rem; line-height: 1; }
+  .field-note-dialog-close:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
+  .field-note-dialog-topline { display: flex; min-height: 2.5rem; align-items: start; justify-content: space-between; gap: 3rem; }
+  .field-note-dialog-topline .field-notes-kicker { margin: .65rem 0 0; }
+  .field-note-dialog-links { display: flex; flex-wrap: wrap; justify-content: end; gap: .4rem; padding-right: 2.6rem; }
+  .field-note-dialog-links:empty { display: none; }
+  :global(.field-note-dialog-link) { display: inline-flex; min-height: 2.15rem; align-items: center; gap: .35rem; padding: .35rem .7rem; border: 1px solid var(--line-strong); border-radius: 5px; background: color-mix(in srgb, var(--ochre) 12%, var(--paper-light)); color: var(--ink); font-size: .74rem; font-weight: 700; text-decoration: none; white-space: nowrap; transition: border-color .18s ease, background-color .18s ease; }
+  :global(.field-note-dialog-link:hover) { border-color: var(--ochre); background: color-mix(in srgb, var(--ochre) 20%, var(--paper-light)); color: var(--ink); }
+  :global(.field-note-dialog-link:focus-visible) { outline: 3px solid var(--ochre); outline-offset: 3px; }
+  .field-note-dialog-species { padding-right: 2.5rem; }
+  .field-note-dialog h2 { margin: 0; font-family: var(--serif); font-size: 1.45rem; font-weight: 650; line-height: 1.2; }
+  .field-note-dialog .field-note-scientific { margin-top: .2rem; font-size: .9rem; line-height: 1.4; }
+  .field-note-dialog-photo-id { margin: .55rem 0 0; color: var(--ink-soft); font-size: .75rem; font-weight: 700; letter-spacing: .04em; }
+  .field-note-dialog-observation { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0 0; padding: .9rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .field-note-dialog-observation div { min-width: 0; }
+  .field-note-dialog-observation dt { margin-bottom: .25rem; color: var(--ink-soft); font-size: .65rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+  .field-note-dialog-observation dd { margin: 0; font-size: .85rem; font-weight: 650; overflow-wrap: anywhere; }
+  .field-note-dialog-description-section { margin-top: 1rem; }
+  .field-note-dialog-description-section h3 { margin: 0; color: var(--ink-soft); font-size: .68rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+  .field-note-dialog-description { margin: .4rem 0 0; color: var(--ink-soft); font-family: var(--serif); font-size: 1.05rem; line-height: 1.65; }
   .field-notes-footer { display: flex; justify-content: center; padding: 1.5rem 0; border-top: 1px solid var(--line-strong); }
   .field-notes-return { display: inline-flex; min-height: var(--control-height); align-items: center; gap: .7rem; padding: .5rem 1.1rem; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--control-bg); color: var(--control-text); font-weight: 700; text-decoration: none; transition: border-color .18s ease, background-color .18s ease, transform .18s ease; }
   .field-notes-return:hover { transform: translateY(-2px); border-color: var(--ochre); background: var(--control-bg-hover); }
   .field-notes-return:focus-visible { outline: 3px solid var(--ochre); outline-offset: 4px; }
   @media (max-width: 850px) { .field-notes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 760px) {
+    .field-notes-header-main { grid-template-columns: 1fr; gap: 1rem; }
+    .field-notes-intro { max-width: 40rem; }
+    .field-notes-header-tools { flex-direction: column; gap: 1rem; }
+    .field-notes-search { width: 100%; flex-basis: auto; }
+    .field-notes-search-status { text-align: left; }
+  }
   @media (max-width: 560px) {
     .field-notes-page { width: calc(100% - 1.1rem); }
-    .field-notes-header { padding: 3rem .2rem 2.5rem; }
-    .field-notes-intro { font-size: 1.08rem; }
+    .field-notes-header { margin-bottom: 2rem; padding: 2.2rem 0 1rem; }
+    .field-notes-heading-copy { padding-left: .75rem; }
+    .field-notes-heading-copy .field-notes-kicker { font-size: .64rem; letter-spacing: .12em; }
+    .field-notes-header h1 { font-size: clamp(2.2rem, 9vw, 3.3rem); line-height: 1.02; }
+    .field-notes-intro { max-width: 38rem; font-size: 1.05rem; }
+    .field-notes-header-tools { gap: 1rem; margin-top: 1.2rem; padding-top: .9rem; }
+    .field-notes-index { gap: .4rem; }
+    .field-notes-index a { min-height: 2.5rem; padding: .35rem .65rem; font-size: .84rem; }
+    .field-notes-index-summary { gap: .6rem; }
+    .field-notes-overview-totals { gap: .75rem; }
+    .field-notes-overview-metric { gap: .25rem; }
+    .field-notes-overview-metric strong { font-size: 1.25rem; }
+    .field-notes-overview-metric span { font-size: .66rem; }
     .field-notes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
     .field-notes-section { margin-bottom: 3rem; }
     .field-note-copy { padding: .7rem .65rem .75rem; }
-    .field-note-title { min-height: 8rem; }
-    .field-note-copy h3 { font-size: 1.15rem; overflow-wrap: anywhere; }
-    .field-note-scientific { font-size: .82rem; overflow-wrap: anywhere; }
+    .field-note-title { min-height: 6.4rem; }
+    .field-note-classification { margin-bottom: .2rem; font-size: .55rem; }
+    .field-note-copy h3 { font-size: clamp(1rem, 4.4vw, 1.2rem); overflow-wrap: anywhere; }
+    .field-note-scientific { font-size: .76rem; line-height: 1.35; overflow-wrap: anywhere; }
     .field-note-details { grid-template-columns: 1fr; gap: .55rem; margin-top: .75rem; padding-top: .7rem; }
     .field-note-details dt { margin-bottom: .15rem; font-size: .59rem; }
     .field-note-details dd { font-size: .75rem; line-height: 1.35; overflow-wrap: anywhere; }
+    .field-note-action { min-height: 2.4rem; padding-inline: .35rem; font-size: .7rem; }
     .field-note-image img { aspect-ratio: 1; }
     .field-note-photo-count { top: .4rem; left: .4rem; gap: .2rem; padding: .3rem .4rem; font-size: .65rem; }
     .field-note-photo-count svg { width: .85rem; height: .85rem; }
@@ -191,14 +307,19 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
   }
   @media (max-width: 380px) {
     .field-notes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
-    .field-note-copy { padding: .85rem .9rem 1rem; }
-    .field-note-title { min-height: 8rem; }
-    .field-note-copy h3 { font-size: 1.35rem; }
-    .field-note-scientific { font-size: .92rem; }
-    .field-note-details { grid-template-columns: 1fr 1fr; gap: .55rem; margin-top: .9rem; padding-top: .8rem; }
-    .field-note-details dt { font-size: .62rem; }
-    .field-note-details dd { font-size: .8rem; }
+    .field-note-copy { padding: .65rem .55rem .7rem; }
+    .field-note-title { min-height: 6rem; }
+    .field-note-copy h3 { font-size: 1rem; }
+    .field-note-scientific { font-size: .72rem; }
+    .field-note-details { grid-template-columns: 1fr; gap: .5rem; margin-top: .7rem; padding-top: .65rem; }
+    .field-note-details dt { font-size: .57rem; }
+    .field-note-details dd { font-size: .72rem; }
     .field-note-image img { aspect-ratio: 4 / 4.2; }
+    .field-note-dialog-inner { padding: 1.35rem 1.1rem; }
+    .field-note-dialog-topline { min-height: 0; flex-wrap: wrap; gap: .65rem; padding-right: 2.4rem; }
+    .field-note-dialog-links { justify-content: start; padding-right: 0; }
+    .field-note-dialog-species { padding-right: 0; }
+    .field-note-dialog-observation { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
   }
 </style>
 
@@ -207,6 +328,67 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
   const searchStatus = document.querySelector<HTMLElement>("[data-search-status]");
   const speciesCards = Array.from(document.querySelectorAll<HTMLElement>("[data-species-card]"));
   const speciesSections = Array.from(document.querySelectorAll<HTMLElement>("[data-species-section]"));
+  const descriptionDialog = document.querySelector<HTMLDialogElement>("[data-description-dialog]");
+  const dialogName = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-name]");
+  const dialogScientific = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-scientific]");
+  const dialogDate = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-date]");
+  const dialogLocation = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-location]");
+  const dialogSeason = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-season]");
+  const dialogWeather = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-weather]");
+  const dialogBehavior = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-behavior]");
+  const dialogHabitat = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-habitat]");
+  const dialogDescription = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-description]");
+  const dialogPhotoId = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-photo-id]");
+  const dialogLinks = descriptionDialog?.querySelector<HTMLElement>("[data-dialog-links]");
+
+  document.querySelectorAll<HTMLButtonElement>("[data-description-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = button.closest<HTMLElement>("[data-species-card]");
+      if (!card || !descriptionDialog) return;
+      const gallery = card.querySelector<HTMLElement>("[data-field-slideshow]");
+      const descriptions = JSON.parse(gallery?.dataset.slideDescriptions || "[]") as string[];
+      const seasons = JSON.parse(gallery?.dataset.slideSeasons || "[]") as string[];
+      const weather = JSON.parse(gallery?.dataset.slideWeather || "[]") as string[];
+      const behaviors = JSON.parse(gallery?.dataset.slideBehavior || "[]") as string[];
+      const habitats = JSON.parse(gallery?.dataset.slideHabitat || "[]") as string[];
+      const currentSlide = Number(gallery?.dataset.currentSlide || 0);
+      const slides = JSON.parse(gallery?.dataset.slides || "[]") as { src: string; alt: string }[];
+      const references = card.querySelector<HTMLElement>("[data-reference-links]");
+      if (dialogName) dialogName.textContent = card.querySelector("h3")?.textContent || "";
+      if (dialogScientific) dialogScientific.textContent = card.querySelector(".field-note-scientific")?.textContent || "";
+      if (dialogDate) dialogDate.textContent = card.querySelector("[data-slide-date]")?.textContent || "Date not listed";
+      if (dialogLocation) dialogLocation.textContent = card.querySelector("[data-slide-location]")?.textContent || "Not listed";
+      if (dialogSeason) dialogSeason.textContent = seasons[currentSlide] || "Not recorded";
+      if (dialogWeather) dialogWeather.textContent = weather[currentSlide]?.trim() || "Not recorded";
+      if (dialogBehavior) dialogBehavior.textContent = behaviors[currentSlide]?.trim() || "Not recorded";
+      if (dialogHabitat) dialogHabitat.textContent = habitats[currentSlide]?.trim() || "Not recorded";
+      if (dialogDescription) dialogDescription.textContent = descriptions[currentSlide]?.trim() || "No Description";
+      if (dialogPhotoId) dialogPhotoId.textContent = `Photo ${currentSlide + 1} of ${slides.length}`;
+      if (dialogLinks && references) {
+        dialogLinks.replaceChildren();
+        const referenceOptions = [
+          ["eBird", references.dataset.ebirdUrl],
+          ["iNaturalist", references.dataset.inaturalistUrl],
+        ] as const;
+        referenceOptions.forEach(([label, url]) => {
+          if (!url) return;
+          const link = document.createElement("a");
+          link.className = "field-note-dialog-link";
+          link.href = url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = `${label} ↗`;
+          dialogLinks.append(link);
+        });
+      }
+      descriptionDialog.showModal();
+    });
+  });
+
+  descriptionDialog?.querySelector<HTMLButtonElement>("[data-description-close]")?.addEventListener("click", () => descriptionDialog.close());
+  descriptionDialog?.addEventListener("click", (event) => {
+    if (event.target === descriptionDialog) descriptionDialog.close();
+  });
 
   speciesSearch?.addEventListener("input", () => {
     const query = speciesSearch.value.trim().toLocaleLowerCase();
@@ -233,23 +415,31 @@ const sections = ["Birds", "Mammals", "Reptiles", "Other"].filter((section) => o
     const slides = JSON.parse(gallery.dataset.slides || "[]") as { src: string; alt: string }[];
     const dates = JSON.parse(gallery.dataset.slideDates || "[]") as string[];
     const locations = JSON.parse(gallery.dataset.slideLocations || "[]") as (string | null)[];
+    const descriptions = JSON.parse(gallery.dataset.slideDescriptions || "[]") as string[];
     const image = gallery.querySelector<HTMLImageElement>("[data-slide-image]");
     const count = gallery.querySelector<HTMLElement>("[data-slide-count]");
+    const notesIndicator = gallery.closest<HTMLElement>("[data-species-card]")?.querySelector<HTMLElement>("[data-notes-indicator]");
     const date = gallery.closest<HTMLElement>(".field-note-card")?.querySelector<HTMLElement>("[data-slide-date]");
     const location = gallery.closest<HTMLElement>(".field-note-card")?.querySelector<HTMLElement>("[data-slide-location]");
     const previous = gallery.querySelector<HTMLButtonElement>("[data-slide-previous]");
     const next = gallery.querySelector<HTMLButtonElement>("[data-slide-next]");
-    if (!image || slides.length < 2) return;
+    if (!image || slides.length < 1) return;
 
     let current = 0;
     const show = (index: number) => {
       current = (index + slides.length) % slides.length;
+      gallery.dataset.currentSlide = String(current);
       image.src = slides[current].src;
       image.alt = slides[current].alt;
       if (count) count.textContent = `${current + 1} / ${slides.length}`;
+      const slideCount = gallery.querySelector<HTMLElement>("[data-slide-count]");
+      if (slideCount) slideCount.parentElement?.setAttribute("aria-label", `Photo ${current + 1} of ${slides.length}`);
+      if (notesIndicator) notesIndicator.hidden = !descriptions[current]?.trim();
       if (date) date.textContent = dates[current] || "Date not listed";
       if (location) location.textContent = locations[current] || "Not listed";
     };
+    show(current);
+    if (slides.length < 2) return;
     previous?.addEventListener("click", () => show(current - 1));
     next?.addEventListener("click", () => show(current + 1));
   });
