@@ -10,8 +10,8 @@ const tiles = [
 ];
 
 const recent = [
-  { title: 'Chase Log: June 19th, 2025', kind: 'Post', href: sitePath('/chase-log-june-19th-2025-dickinson-north-dakota-wedge/') },
-  { title: 'Rear Flank Storm Interactions', kind: 'Research', href: `${sitePath('/about_and_work/')}#research-projects` },
+  { title: 'Chase Log: June 19th, 2025', text: 'A dusty wedge tornado over rural southwestern North Dakota badlands on June 19th, 2025.', kind: 'Recent Post', href: sitePath('/chase-log-june-19th-2025-dickinson-north-dakota-wedge/') },
+  { title: 'Rear Flank Storm Interactions', text: 'Investigating the impact of rear-flank storm interactions on supercell behavior, evolution, and hazard production.', kind: 'Research Highlight', href: `${sitePath('/about_and_work/')}#research-projects` },
 ];
 ---
 
@@ -35,7 +35,10 @@ const recent = [
       {recent.map((item) => (
         <li>
           <a href={item.href}>
-            <strong>{item.title}</strong>
+            <div>
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </div>
             <span>{item.kind}</span>
           </a>
         </li>
