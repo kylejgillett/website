@@ -193,8 +193,8 @@ main { min-height: 65vh; }
 .home-card--photo { border-color: var(--ochre); background: linear-gradient(135deg, rgb(205 188 150 / 8%), transparent 75%), var(--paper-light); }
 .home-card--work { --home-accent: var(--moss); }
 .home-card--writing { --home-accent: var(--clay); }
-.home-card--work, .home-card--writing { border: 1px solid var(--line-strong); background: rgb(51 47 42 / 82%); box-shadow: none; }
-.home-card--work:hover, .home-card--writing:hover { border-color: var(--ochre); background: var(--paper-light); }
+.home-card--work, .home-card--app, .home-card--writing { border: 1px solid var(--line-strong); background: rgb(51 47 42 / 82%); box-shadow: none; }
+.home-card--work:hover, .home-card--app:hover, .home-card--writing:hover { border-color: var(--ochre); background: var(--paper-light); }
 .home-card .card-body { display: flex; flex-direction: column; padding: 1.1rem 1.3rem; }
 .home-card h3 { font-size: 1.55rem; }
 .home-card .card-link { margin-top: .65rem; }

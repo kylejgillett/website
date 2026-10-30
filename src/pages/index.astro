@@ -18,6 +18,13 @@ const featured = [
     className: 'home-card--work',
   },
   {
+    title: 'SounderPy Web App',
+    text: 'Plot observed, aircraft, model forecast, and reanalysis soundings right in your browser.',
+    href: 'https://sounderpy.app/',
+    label: 'Open the app',
+    className: 'home-card--app',
+  },
+  {
     title: 'Meteorological Musings',
     text: 'Chase logs, research summaries, and other ramblings.',
     href: sitePath('/posts/'),
@@ -37,9 +44,9 @@ const featured = [
     </figure>
     <section class="home-explore" aria-labelledby="explore-title">
       <div class="home-section-heading">
-        <h2 id="explore-title">On this site</h2>
+        <h2 id="explore-title">Explore</h2>
       </div>
-      <nav class="cards home-cards" aria-label="On this site">
+      <nav class="cards home-cards" aria-label="Explore">
         {featured.map((item) => (
           <a class={`card home-card ${item.className}`} href={item.href}>
             <div class="card-body">
