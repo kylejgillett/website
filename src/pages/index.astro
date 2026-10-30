@@ -14,6 +14,7 @@ const recent = [
   { title: 'Chase Log: June 19th, 2025', text: 'A dusty wedge tornado over rural southwestern North Dakota badlands on June 19th, 2025.', kind: 'Recent Post', href: sitePath('/chase-log-june-19th-2025-dickinson-north-dakota-wedge/') },
   { title: 'Rear Flank Storm Interactions', text: 'Investigating the impact of rear-flank storm interactions on supercell behavior, evolution, and hazard production.', kind: 'Research Highlight', href: `${sitePath('/about_and_work/')}#research-projects` },
 ];
+const newTab = (href) => href.startsWith('http') ? { target: '_blank', rel: 'noreferrer noopener' } : {};
 ---
 
 <BaseLayout title="Home" description="Photography, atmospheric science, software tools, and field notes by Kyle J. Gillett.">
@@ -23,7 +24,7 @@ const recent = [
       <span>My Photography</span>
     </a>
     {tiles.map((tile) => (
-      <a class="home-tile" href={tile.href}>
+      <a class="home-tile" href={tile.href} {...newTab(tile.href)}>
         <img src={tile.image} alt="" loading="lazy" />
         <span>{tile.title}</span>
       </a>
@@ -35,7 +36,7 @@ const recent = [
     <ul>
       {recent.map((item) => (
         <li>
-          <a href={item.href}>
+          <a href={item.href} {...newTab(item.href)}>
             <div>
               <strong>{item.title}</strong>
               <p>{item.text}</p>
