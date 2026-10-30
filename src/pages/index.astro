@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { sitePath } from '../utils/site-path.js';
 
 const tiles = [
-  { title: 'My Photography', href: sitePath('/photography/'), image: sitePath('/images_home/photography.webp') },
+  { title: 'Wildlife Field Notes', href: sitePath('/wildlife-field-notes/'), image: sitePath('/images_wildlife/optimized/20250901_pronghorn.webp') },
   { title: 'Research, Tools, CV, & About', href: sitePath('/about_and_work/'), image: sitePath('/images_home/research.webp') },
   { title: 'SounderPy Web App', href: 'https://sounderpy.app/', image: sitePath('/images_home/sounderpy.webp') },
   { title: 'Meteorological Musings', href: sitePath('/posts/'), image: sitePath('/images_home/musings.webp') },
@@ -11,22 +11,16 @@ const tiles = [
 
 const recent = [
   { title: 'Chase Log: June 19th, 2025', kind: 'Post', href: sitePath('/chase-log-june-19th-2025-dickinson-north-dakota-wedge/') },
-  { title: 'Wildlife Field Notes', kind: 'Gallery', href: sitePath('/wildlife-field-notes/') },
   { title: 'Rear Flank Storm Interactions', kind: 'Research', href: `${sitePath('/about_and_work/')}#research-projects` },
 ];
 ---
 
 <BaseLayout title="Home" description="Photography, atmospheric science, software tools, and field notes by Kyle J. Gillett.">
-  <section class="home-hero container" aria-label="Featured photograph">
-    <figure class="home-hero-visual">
-      <a class="home-hero-link" href={sitePath('/photography/')} aria-label="Visit photo gallery">
-        <img class="home-hero-image" src={sitePath('/images_home/hero.webp')} alt="A broad supercell storm structure over green plains at sunset." />
-        <span class="home-hero-cta">Visit photo gallery <span aria-hidden="true">→</span></span>
-      </a>
-    </figure>
-  </section>
-
   <nav class="home-tiles container" aria-label="Explore">
+    <a class="home-tile home-tile--hero" href={sitePath('/photography/')}>
+      <img src={sitePath('/images_home/hero.webp')} alt="A broad supercell storm structure over green plains at sunset." />
+      <span>My Photography</span>
+    </a>
     {tiles.map((tile) => (
       <a class="home-tile" href={tile.href}>
         <img src={tile.image} alt="" loading="lazy" />
