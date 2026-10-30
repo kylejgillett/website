@@ -2,83 +2,51 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sitePath } from '../utils/site-path.js';
 
-const featured = [
-  {
-    title: 'My Photography',
-    text: 'Storms, lightning, aurora, landscapes, wildlife, and other neat things.',
-    href: sitePath('/photography/'),
-    label: 'Browse photographs',
-    className: 'home-card--photo',
-  },
-  {
-    title: 'Research, Tools, CV, & About',
-    text: 'Explore my research, software tools, educational resources, and my CV.',
-    href: sitePath('/about_and_work/'),
-    label: 'Explore my work',
-    className: 'home-card--work',
-  },
-  {
-    title: 'SounderPy Web App',
-    text: 'Plot observed, aircraft, model forecast, and reanalysis soundings right in your browser.',
-    href: 'https://sounderpy.app/',
-    label: 'Open the app',
-    className: 'home-card--app',
-  },
-  {
-    title: 'Meteorological Musings',
-    text: 'Chase logs, research summaries, and other ramblings.',
-    href: sitePath('/posts/'),
-    label: 'Read the posts',
-    className: 'home-card--writing',
-  },
+const tiles = [
+  { title: 'My Photography', href: sitePath('/photography/'), image: sitePath('/images_home/photography.webp') },
+  { title: 'Research, Tools, CV, & About', href: sitePath('/about_and_work/'), image: sitePath('/images_home/research.webp') },
+  { title: 'SounderPy Web App', href: 'https://sounderpy.app/', image: sitePath('/images_home/sounderpy.webp') },
+  { title: 'Meteorological Musings', href: sitePath('/posts/'), image: sitePath('/images_home/musings.webp') },
+];
+
+const recent = [
+  { title: 'Chase Log: June 19th, 2025', kind: 'Post', href: sitePath('/chase-log-june-19th-2025-dickinson-north-dakota-wedge/') },
+  { title: 'Wildlife Field Notes', kind: 'Gallery', href: sitePath('/wildlife-field-notes/') },
+  { title: 'Rear Flank Storm Interactions', kind: 'Research', href: `${sitePath('/about_and_work/')}#research-projects` },
 ];
 ---
 
 <BaseLayout title="Home" description="Photography, atmospheric science, software tools, and field notes by Kyle J. Gillett.">
-  <section class="home-feature container" aria-label="Featured photography and site navigation">
+  <section class="home-hero container" aria-label="Featured photograph">
     <figure class="home-hero-visual">
       <a class="home-hero-link" href={sitePath('/photography/')} aria-label="Visit photo gallery">
-        <img class="home-hero-image" src={sitePath('/images_gallery/12_20250620_structure_landscape.jpg')} alt="A broad supercell storm structure over green plains at sunset." />
+        <img class="home-hero-image" src={sitePath('/images_home/hero.webp')} alt="A broad supercell storm structure over green plains at sunset." />
         <span class="home-hero-cta">Visit photo gallery <span aria-hidden="true">→</span></span>
       </a>
     </figure>
-    <section class="home-explore" aria-labelledby="explore-title">
-      <div class="home-section-heading">
-        <h2 id="explore-title">Explore</h2>
-      </div>
-      <nav class="cards home-cards" aria-label="Explore">
-        {featured.map((item) => (
-          <a class={`card home-card ${item.className}`} href={item.href}>
-            <div class="card-body">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-              <span class="card-link">{item.label} <span aria-hidden="true">→</span></span>
-            </div>
-          </a>
-        ))}
-      </nav>
-    </section>
   </section>
 
-  <section class="home-highlights container" aria-label="Featured work">
-    <article class="home-highlight home-wildlife" style={`--panel-image: url("${sitePath('/images_wildlife/optimized/20250901_pronghorn.webp')}")`}>
-      <p class="home-eyebrow">Wildlife Gallery</p>
-      <h2>Wildlife Field Notes</h2>
-      <p>Explore wildlife photographs with species identification and observation details.</p>
-      <a href={sitePath('/wildlife-field-notes/')}>Browse field notes <span aria-hidden="true">→</span></a>
-    </article>
-    <article class="home-highlight home-research" style={`--panel-image: url("${sitePath('/images_research/storminteractions_map_reflectivity_evolution_comparison_annotated.png')}")`}>
-      <p class="home-eyebrow">Research Highlight</p>
-      <h2>Rear Flank Storm Interactions</h2>
-      <p>Investigating the impact of rear-flank storm interactions on supercell behavior, evolution, and hazard production.</p>
-      <a href={`${sitePath('/about_and_work/')}#research-projects`}>Explore the research <span aria-hidden="true">→</span></a>
-    </article>
-    <article class="home-highlight home-field-note" style={`--panel-image: url("${sitePath('/images_posts/chaselog_20250620/20250620-0021_CL-3.jpg')}")`}>
-      <p class="home-eyebrow">Recent Post</p>
-      <h2>Chase Log: June 19th, 2025</h2>
-      <p>A dusty wedge tornado over rural southwestern North Dakota badlands on June 19th, 2025.</p>
-      <a href={sitePath('/chase-log-june-19th-2025-dickinson-north-dakota-wedge/')}>Read the chase log <span aria-hidden="true">→</span></a>
-    </article>
+  <nav class="home-tiles container" aria-label="Explore">
+    {tiles.map((tile) => (
+      <a class="home-tile" href={tile.href}>
+        <img src={tile.image} alt="" loading="lazy" />
+        <span>{tile.title}</span>
+      </a>
+    ))}
+  </nav>
+
+  <section class="home-recent container" aria-labelledby="recent-title">
+    <h2 id="recent-title">Recently</h2>
+    <ul>
+      {recent.map((item) => (
+        <li>
+          <a href={item.href}>
+            <strong>{item.title}</strong>
+            <span>{item.kind}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </section>
 
   <section class="home-contact container" aria-label="Contact">
