@@ -2,6 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sitePath } from '../utils/site-path.js';
 
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Kyle J. Gillett',
+  url: 'https://kylegillettphoto.com/',
+  jobTitle: 'Atmospheric Science PhD Student',
+  affiliation: { '@type': 'CollegeOrUniversity', name: 'University of North Dakota' },
+  sameAs: [
+    'https://orcid.org/0009-0001-5528-5037',
+    'https://scholar.google.com/citations?user=TJfePdkAAAAJ',
+    'https://github.com/kylejgillett',
+    'https://www.researchgate.net/profile/Kyle-Gillett-2',
+    'https://x.com/wxkylegillett',
+  ],
+};
+
 const tiles = [
   { title: 'Wildlife Field Notes', href: sitePath('/wildlife-field-notes/'), image: sitePath('/images_wildlife/optimized/20250901_pronghorn.webp') },
   { title: 'Research, Tools, CV, & About', href: sitePath('/about_and_work/'), image: sitePath('/images_home/research.webp') },
@@ -17,7 +33,8 @@ const recent = [
 const newTab = (href) => href.startsWith('http') ? { target: '_blank', rel: 'noreferrer noopener' } : {};
 ---
 
-<BaseLayout title="Home" description="Photography, atmospheric science, software tools, and field notes by Kyle J. Gillett.">
+<BaseLayout title="Home" fullTitle="Kyle J. Gillett | Photographer, Storm Chaser, Meteorologist" description="My photography, atmospheric science research, software tools, and field notes.">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />
   <nav class="home-tiles container" aria-label="Explore">
     <a class="home-tile home-tile--hero" href={sitePath('/photography/')}>
       <img src={sitePath('/images_home/hero.webp')} alt="A broad supercell storm structure over green plains at sunset." />

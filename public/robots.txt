@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kylegillettphoto.com/sitemap.xml

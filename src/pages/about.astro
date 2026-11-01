@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sitePath } from '../utils/site-path.js';
 ---
-<BaseLayout title="About me and my work" description="This page has moved to its new address.">
+<BaseLayout title="About me and my work" description="This page has moved to its new address." canonical="/about_and_work/">
   <section class="container page-head about-alias">
     <h1>About me and my work has a new address.</h1>
     <p><a class="page-content-button" href={sitePath('/about_and_work/')}>Open the page <span aria-hidden="true">→</span></a></p>

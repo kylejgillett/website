@@ -474,6 +474,7 @@ main { min-height: 65vh; }
   min-height: var(--control-height);
   align-items: center;
   justify-content: center;
+  gap: .45rem;
   padding: .65rem 1.15rem;
   border: 1px solid var(--control-border);
   border-radius: 6px;
