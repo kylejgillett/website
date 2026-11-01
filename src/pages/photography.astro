@@ -1,6 +1,7 @@
 ---
-import { readdirSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, readdirSync } from "node:fs";
+import { parse, resolve } from "node:path";
+import sharp from "sharp";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sitePath } from '../utils/site-path.js';
 
@@ -8,6 +9,7 @@ const title = "Photography Gallery";
 const description = "My photographs of storms, northern lights, plains, wildlife, and other neat things.";
 
 const photoDirectory = resolve(process.cwd(), "public/images_gallery");
+const thumbDirectory = resolve(process.cwd(), "public/images_gallery_thumbs");
 const photoFiles = readdirSync(photoDirectory)
   .filter((filename) => /^\d+_.*\.(jpe?g|png|webp)$/i.test(filename))
   .sort((a, b) => Number(a.match(/^\d+/)?.[0]) - Number(b.match(/^\d+/)?.[0]) || a.localeCompare(b));
@@ -56,7 +58,11 @@ const categoriesFor = (filename) => {
   return matches;
 };
 
-const photographs = photoFiles.map((filename) => {
+const photographs = (await Promise.all(photoFiles.map(async (filename) => {
+  // Make thumbnails with `npm run thumbs`. A photo without one shows its original until then.
+  const thumbName = `${parse(filename).name}.webp`;
+  const hasThumb = existsSync(resolve(thumbDirectory, thumbName));
+  const { width, height } = await sharp(hasThumb ? resolve(thumbDirectory, thumbName) : resolve(photoDirectory, filename)).metadata();
   const name = filename
     .replace(/^\d+_/, "")
     .replace(/\.[^.]+$/, "")
@@ -65,11 +71,14 @@ const photographs = photoFiles.map((filename) => {
     .toLowerCase();
   return {
     src: sitePath(`/images_gallery/${filename}`),
+    thumb: hasThumb ? sitePath(`/images_gallery_thumbs/${thumbName}`) : sitePath(`/images_gallery/${filename}`),
+    width,
+    height,
     alt: `Photograph of ${name} by Kyle J. Gillett`,
     categories: categoriesFor(filename),
     sortOrder: Number(filename.match(/^\d+/)?.[0]),
   };
-}).sort((a, b) => a.sortOrder - b.sortOrder || a.src.localeCompare(b.src));
+}))).sort((a, b) => a.sortOrder - b.sortOrder || a.src.localeCompare(b.src));
 
 const categoryFilters = [
   { id: "all", label: "All photos", count: photographs.length },
@@ -122,7 +131,7 @@ photographs.forEach((photo, index) => {
                 data-photo-alt={photo.alt}
                 aria-label={`View photo ${photo.order + 1} of ${photographs.length}: ${photo.alt}`}
               >
-                <img src={photo.src} alt={photo.alt} loading="lazy" />
+                <img src={photo.thumb} alt={photo.alt} width={photo.width} height={photo.height} loading={photo.order < 6 ? "eager" : "lazy"} decoding="async" />
               </button>
             </figure>
           ))}
@@ -182,13 +191,14 @@ photographs.forEach((photo, index) => {
       const visibleItems = photoItems
         .filter((item) => !item.hidden)
         .sort((a, b) => Number(a.dataset.photoOrder) - Number(b.dataset.photoOrder));
-      photoColumns.forEach((column) => column.replaceChildren());
       const layoutColumns = window.matchMedia("(max-width: 760px)").matches
         ? photoColumns.slice(0, 2)
         : photoColumns;
       visibleItems.forEach((item, index) => {
         const column = layoutColumns[index % layoutColumns.length];
-        column?.append(item);
+        // Moving instead of detaching keeps not-yet-loaded photos lazy. Detaching them starts their downloads.
+        if (column && "moveBefore" in column) (column as any).moveBefore(item, null);
+        else column?.append(item);
       });
       activeTriggers = triggers.filter((trigger) => !trigger.closest(".photo-item")?.hidden);
       filterButtons.forEach((button) => {
@@ -200,7 +210,8 @@ photographs.forEach((photo, index) => {
     filterButtons.forEach((button) => {
       button.addEventListener("click", () => applyFilter(button.dataset.photoFilter || "all"));
     });
-    applyFilter("all");
+    // The page is built with three columns, so only phones need rearranging on load.
+    if (window.matchMedia("(max-width: 760px)").matches) applyFilter("all");
     window.matchMedia("(max-width: 760px)").addEventListener("change", () => applyFilter(activeCategory));
 
     triggers.forEach((trigger) => {

@@ -229,7 +229,7 @@ main { min-height: 65vh; }
 .photo-filter:hover { border-color: var(--line-strong); color: var(--forest-deep); }
 .photo-filter[aria-pressed="true"] { border-color: var(--ochre); background: var(--ochre); color: var(--paper); }
 .photo-filter:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; }
-.photo-filter-count { color: inherit; font-size: .75rem; opacity: .78; }
+.photo-filter-count { color: inherit; font-size: .75rem; }
 .photo-filter-status { flex: 0 0 auto; color: var(--ink-soft); font-size: .82rem; }
 .photo-item[hidden] { display: none; }
 .photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: .8rem; margin: 0 auto 4rem; }
